@@ -12,6 +12,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- set leader key
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -24,3 +25,20 @@ require("custom")
 
 -- theme
 vim.cmd.colorscheme("catppuccin-mocha")
+
+-- set color column to be blank whenever wrap is set
+vim.api.nvim_create_autocmd("BufEnter", {
+	-- call on every file type
+	pattern = "*",
+	callback = function()
+		local wrapped_fts = { "markdown", "quarto", "txt" }
+		local ft = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), "filetype")
+		for _, value in pairs(wrapped_fts) do
+			-- check if ft is in wrapped_fts
+			if value == ft then
+				-- set colorcolumn to be blank
+				vim.opt.colorcolumn = ""
+			end
+		end
+	end,
+})
