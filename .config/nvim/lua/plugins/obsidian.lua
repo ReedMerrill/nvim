@@ -1,26 +1,52 @@
+-- this config is meant to load different autocmds and workspaces depending on if its on my work computer (MacOS) or personal (Linux)
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
 	lazy = true,
+	-- for activating on all markdown files
 	-- ft = "markdown",
-	-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-	event = {
-		-- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-		-- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-		-- refer to `:h file-pattern` for more examples
-		"BufReadPre /Users/reed/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
-		"BufNewFile /Users/reed/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
-	},
+	-- to only activate while inside a specified obsidian vault.
+	-- Function to return different autocmds depending on if its my personal or work laptop
+	event = function()
+		if vim.loop.os_uname().sysname == "Linux" then
+			return {
+				"BufReadPre " .. vim.fn.expand("~") .. "/Dropbox/obsidian-vaults/main/*.md",
+				"BufNewFile " .. vim.fn.expand("~") .. "/Dropbox/obsidian-vaults/main/*.md",
+			}
+		else
+			return {
+				"BufReadPre "
+					.. vim.fn.expand("~")
+					.. "/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
+				"BufNewFile "
+					.. vim.fn.expand("~")
+					.. "/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
+			}
+		end
+	end,
 	dependencies = {
 		-- Required.
 		"nvim-lua/plenary.nvim",
 	},
-	opts = {
-		workspaces = {
-			{
-				name = "CMB",
-				path = "/Users/reed/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB",
-			},
-		},
-	},
+	opts = function()
+		if vim.loop.os_uname().sysname == "Linux" then
+			return {
+				workspaces = {
+					{
+						name = "main",
+						path = "/home/reed/Dropbox/obsidian-vaults/main",
+					},
+				},
+			}
+		else
+			return {
+				workspaces = {
+					{
+						name = "CMB",
+						path = "/Users/reed/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB",
+					},
+				},
+			}
+		end
+	end,
 }
