@@ -18,7 +18,7 @@ return {
 					end,
 				},
 				min_editor_width = 72,
-				rconsole_width = 78,
+				rconsole_width = 84,
 				disable_cmds = {
 					"RClearConsole",
 					"RCustomStart",
