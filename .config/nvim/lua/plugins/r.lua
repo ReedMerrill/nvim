@@ -7,13 +7,13 @@ return {
 				pdfviewer = "/System/Applications/Preview.app/Contents/MacOS/Preview",
 				R_args = { "--quiet", "--no-save" },
 				hook = {
-					after_config = function()
+					on_filetype = function()
 						-- This function will be called at the FileType event
 						-- of files supported by R.nvim. This is an
 						-- opportunity to create mappings local to buffers.
 						if vim.o.syntax ~= "rbrowser" then
-							vim.api.nvim_buf_set_keymap(0, "n", "<Enter>", "<Plug>RDSendLine", {})
-							vim.api.nvim_buf_set_keymap(0, "v", "<Enter>", "<Plug>RSendSelection", {})
+							vim.api.nvim_buf_set_keymap(0, "n", "<enter>", "<Plug>RDSendLine", { noremap = true })
+							vim.api.nvim_buf_set_keymap(0, "v", "<enter>", "<Plug>RSendSelection", { noremap = true })
 						end
 					end,
 				},

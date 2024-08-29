@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>wq", ":wq<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>wa", ":wall<CR>", { noremap = true })
 
 -- reload the buffer from last save
-vim.keymap.set("n", "<leader>r", ":e!", { desc = "Reload buffer" })
+vim.keymap.set("n", "<leader>e", ":e!", { desc = "Reload buffer" })
 
 -- code navigation
 
