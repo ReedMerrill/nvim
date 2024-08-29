@@ -3,7 +3,19 @@ return {
 	build = ":TSUpdate",
 	opts = {
 		-- A list of parser names, or "all" (the five listed parsers should always be installed)
-		ensure_installed = { "latex", "markdown_inline", "r", "lua", "vim", "vimdoc", "query", "javascript", "csv" },
+		ensure_installed = {
+			"latex",
+			"r",
+			"rnoweb",
+			"markdown",
+			"markdown_inline",
+			"lua",
+			"vim",
+			"vimdoc",
+			"query",
+			"javascript",
+			"csv",
+		},
 
 		-- Install parsers synchronously (only applied to `ensure_installed`)
 		sync_install = true,
@@ -11,6 +23,11 @@ return {
 		-- Automatically install missing parsers when entering buffer
 		-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
 		auto_install = true,
+
+		indent = {
+			enable = true,
+			disable = { "markdown" }, -- default has better indentation
+		},
 
 		highlight = {
 			enable = true,
