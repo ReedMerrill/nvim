@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
 	callback = function()
 		local wrapped_fts = { "markdown", "quarto", "txt" }
-		local ft = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), "filetype")
+		local ft = vim.api.nvim_get_option_value("filetype", {})
 		for _, value in pairs(wrapped_fts) do
 			-- check if ft is in wrapped_fts
 			if value == ft then
