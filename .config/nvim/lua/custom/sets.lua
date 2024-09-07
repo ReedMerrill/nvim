@@ -1,7 +1,7 @@
 -- set leader to " "
 vim.g.mapleader = " "
 
--- conceallevel for obsidian.nvim
+-- conceallevel (for live formatting in markdown etc...)
 vim.opt.conceallevel = 2
 
 -- editor features

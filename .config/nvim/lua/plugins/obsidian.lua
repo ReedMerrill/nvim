@@ -2,6 +2,7 @@
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
+	ui = { enable = false }, -- disable markdown render in favor of markdown.nvim
 	lazy = true,
 	-- for activating on all markdown files
 	-- ft = "markdown",
