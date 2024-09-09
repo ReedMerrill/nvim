@@ -42,3 +42,31 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		end
 	end,
 })
+
+-- disable spell checking for terminal windows
+vim.cmd([[
+  autocmd TermOpen * setlocal nospell
+]])
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
+
+-- enter insert mode when focusing a terminal
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	desc = "Set terminal to insert mode",
+	group = termgroup,
+	pattern = "term://*",
+	callback = function()
+		vim.schedule(function()
+			vim.cmd(":startinsert")
+		end)
+	end,
+})

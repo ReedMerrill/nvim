@@ -4,17 +4,18 @@ return {
 	opts = {
 		-- A list of parser names, or "all" (the five listed parsers should always be installed)
 		ensure_installed = {
-			"latex",
+			"lua",
+			"vim",
+			"vimdoc",
 			"r",
 			"rnoweb",
 			"markdown",
 			"markdown_inline",
-			"lua",
-			"vim",
-			"vimdoc",
+			"latex",
 			"query",
 			"javascript",
 			"csv",
+			"json",
 		},
 
 		-- Install parsers synchronously (only applied to `ensure_installed`)
@@ -26,7 +27,7 @@ return {
 
 		indent = {
 			enable = true,
-			disable = { "markdown" }, -- default has better indentation
+			-- disable = { "markdown" }, -- default has better indentation
 		},
 
 		highlight = {

@@ -1,5 +1,14 @@
 return {
 	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {
+			bullet = {
+				icons = { "•" },
+			},
+		},
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+	},
+	{
 		"windwp/nvim-ts-autotag",
 		config = function()
 			require("nvim-ts-autotag").setup()
@@ -39,7 +48,7 @@ return {
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
 		opts = {
-			disabled_filetypes = { "lazy", "mason", "oil" },
+			disabled_filetypes = { "lazy", "mason", "oil", "undotree", "aerial" },
 		},
 	},
 }

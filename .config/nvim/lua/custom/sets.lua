@@ -1,7 +1,7 @@
 -- set leader to " "
 vim.g.mapleader = " "
 
--- conceallevel for obsidian.nvim
+-- conceallevel (for live formatting in markdown etc...)
 vim.opt.conceallevel = 2
 
 -- editor features
@@ -29,6 +29,9 @@ vim.opt.undofile = true
 -- search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+-- ignore case unless capital is in search term
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- get nice colors
 vim.opt.termguicolors = true
@@ -56,18 +59,3 @@ vim.g.copilot_filetypes = { quarto = false }
 -- zg - add word to dictionary
 vim.opt.spelllang = "en_us"
 vim.opt.spell = true
--- disable spell checking for terminal windows
-vim.cmd([[
-  autocmd TermOpen * setlocal nospell
-]])
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
