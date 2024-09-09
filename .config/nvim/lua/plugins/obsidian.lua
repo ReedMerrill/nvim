@@ -2,7 +2,13 @@
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
-	ui = { enable = false }, -- disable markdown render in favor of markdown.nvim
+	ui = {
+		enable = false, -- disable markdown render in favor of markdown.nvim
+		checkboxes = {
+			[" "] = { char = "☐", hl_group = "ObsidianTodo" },
+			["x"] = { char = "✔", hl_group = "ObsidianDone" },
+		},
+	},
 	lazy = true,
 	-- for activating on all markdown files
 	-- ft = "markdown",
@@ -50,4 +56,13 @@ return {
 			}
 		end
 	end,
+	mappings = {
+		-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+		["gf"] = {
+			action = function()
+				return require("obsidian").util.gf_passthrough()
+			end,
+			opts = { noremap = false, expr = true, buffer = true },
+		},
+	},
 }
