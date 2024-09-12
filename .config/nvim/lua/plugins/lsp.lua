@@ -138,7 +138,8 @@ return {
 			local servers = {
 				pyright = {},
 				html = {},
-				tsserver = {},
+				ts_ls = {},
+				bashls = {},
 				r_language_server = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--

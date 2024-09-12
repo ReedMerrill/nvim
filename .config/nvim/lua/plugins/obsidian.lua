@@ -3,10 +3,15 @@ return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
 	ui = {
-		enable = false, -- disable markdown render in favor of markdown.nvim
+		enable = true, -- disable markdown render in favor of markdown.nvim
 		checkboxes = {
-			[" "] = { char = "☐", hl_group = "ObsidianTodo" },
-			["x"] = { char = "✔", hl_group = "ObsidianDone" },
+			[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+			["x"] = { char = "", hl_group = "ObsidianDone" },
+			[">"] = { char = "", hl_group = "ObsidianRightArrow" },
+			["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+			["!"] = { char = "", hl_group = "ObsidianImportant" },
+			-- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
+			-- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
 		},
 	},
 	lazy = true,
