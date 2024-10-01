@@ -4,6 +4,9 @@ vim.g.mapleader = " "
 -- conceallevel (for live formatting in markdown etc...)
 vim.opt.conceallevel = 2
 
+-- disable perl
+vim.g.loaded_perl_provider = 0
+
 -- editor features
 vim.opt.nu = true
 vim.opt.relativenumber = true

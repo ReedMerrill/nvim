@@ -71,6 +71,7 @@ vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal Navigation"
 vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 
 -- open/toggle terminal
+-- there some conflict with tmux here
 vim.keymap.set("n", "<C-T>", "<CMD>ToggleTerm<CR>", { desc = "Open a terminal" })
 vim.keymap.set("n", "<C-T>v", "<CMD>ToggleTerm direction=vertical size=100<CR>", { desc = "Open a terminal" })
 

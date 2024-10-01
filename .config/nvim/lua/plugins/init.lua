@@ -1,13 +1,4 @@
 return {
-	-- {
-	-- 	"MeanderingProgrammer/render-markdown.nvim",
-	-- 	opts = {
-	-- 		bullet = {
-	-- 			icons = { "•" },
-	-- 		},
-	-- 	},
-	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-	-- },
 	{
 		"windwp/nvim-ts-autotag",
 		config = function()
@@ -30,8 +21,6 @@ return {
 	"ThePrimeagen/harpoon",
 	-- undo tree
 	"mbbill/undotree",
-	-- smart splits
-	"mrjones2014/smart-splits.nvim",
 	-- word highlighting and cycling
 	"RRethy/vim-illuminate",
 	-- neovim (lua) dev stuff
