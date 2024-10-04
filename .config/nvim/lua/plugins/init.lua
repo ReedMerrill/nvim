@@ -32,4 +32,11 @@ return {
 	-- surround actions
 	{ "echasnovski/mini.surround", version = "*" },
 	{ "echasnovski/mini.ai", version = "*" },
+	{
+		"kdheepak/lazygit.nvim",
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
 }
