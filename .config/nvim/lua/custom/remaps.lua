@@ -33,19 +33,24 @@ vim.keymap.set("n", "<leader>c", "<cmd>bp<bar>bd#<cr>", { desc = "Close Current 
 vim.keymap.set("x", "<leader>dp", [["_dP]])
 
 -- yank to the system register in visual and normal modes
-vim.keymap.set({ "n", "v", "x" }, "<leader>y", [["+y]], { desc = "Yank to the system clipboard" })
+vim.keymap.set({ "n", "v", "x" }, "<leader>y", [["+y]], { noremap = true, desc = "Yank to the system clipboard" })
 
 -- yank the entire buffer to the system register
-vim.api.nvim_set_keymap(
-	"n",
-	"ya",
+vim.keymap.set(
+	{ "n", "v", "x" },
+	"<C-y>",
 	":%y+<CR>",
 	{ noremap = true, silent = true, desc = "Yank entire file to the system clipboard" }
 )
 
 -- clear the buffer
 -- (good for using nvim as a scratchpad and doing quick text manipulation for forms)
-vim.api.nvim_set_keymap("n", "da", ":%delete+<CR>", { noremap = true, silent = true, desc = "Delete everything" })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>da",
+	":%delete+<CR>",
+	{ noremap = true, silent = true, desc = "Delete everything" }
+)
 
 -- make the file in buffer executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file executable" })

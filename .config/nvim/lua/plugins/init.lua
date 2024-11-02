@@ -30,8 +30,6 @@ return {
 	-- icons
 	"nvim-tree/nvim-web-devicons",
 	-- surround actions
-	{ "echasnovski/mini.surround", version = "*" },
-	{ "echasnovski/mini.ai", version = "*" },
 	{
 		"kdheepak/lazygit.nvim",
 		-- optional for floating window border decoration
@@ -39,4 +37,10 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
+	-- better text object actions
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+	},
+	{ "echasnovski/mini.ai", version = false },
 }

@@ -13,7 +13,7 @@ return {
 			switchSlot = "<C-q>",
 			editMacro = "cq",
 			deleteAllMacros = "dq",
-			yankMacro = "yq",
+			yankMacro = "<leader>qy",
 			-- ⚠️ this should be a string you don't use in insert mode during a macro
 			addBreakPoint = "##",
 		},
