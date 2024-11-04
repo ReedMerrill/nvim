@@ -53,11 +53,11 @@ return {
 		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
 	{ "echasnovski/mini.ai", opts = {}, version = false },
-	{ "meznaric/key-analyzer.nvim", opts = {} },
 	-- show keybindings for a given mode and prefix. Mode defaults to "n"
 	--  usage:
 	-- :KeyAnalyzer <prefix> [mode]
 	-- :KeyAnalyzer <leader>
 	-- :KeyAnalyzer <leader>b
 	-- :KeyAnalyzer <C-
+	{ "meznaric/key-analyzer.nvim", opts = {} },
 }
