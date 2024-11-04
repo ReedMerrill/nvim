@@ -29,7 +29,6 @@ return {
 	"folke/trouble.nvim",
 	-- icons
 	"nvim-tree/nvim-web-devicons",
-	-- surround actions
 	{
 		"kdheepak/lazygit.nvim",
 		-- optional for floating window border decoration
@@ -37,10 +36,28 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	-- better text object actions
+	-- surround
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
+	-- better text objects
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
-	{ "echasnovski/mini.ai", version = false },
+	{ "echasnovski/mini.ai", opts = {}, version = false },
+	{ "meznaric/key-analyzer.nvim", opts = {} },
+	-- show keybindings for a given mode and prefix. Mode defaults to "n"
+	--  usage:
+	-- :KeyAnalyzer <prefix> [mode]
+	-- :KeyAnalyzer <leader>
+	-- :KeyAnalyzer <leader>b
+	-- :KeyAnalyzer <C-
 }
