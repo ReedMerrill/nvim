@@ -19,6 +19,7 @@ require("conform").setup({
 	end,
 })
 
+-- commands to turn the formatter on and off
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
 		-- FormatDisable! will disable formatting just for this buffer
@@ -36,3 +37,7 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
 	desc = "Re-enable autoformat-on-save",
 })
+
+vim.keymap.set("", "<leader>f", function()
+	require("conform").format({ async = true, lsp_fallback = true })
+end)

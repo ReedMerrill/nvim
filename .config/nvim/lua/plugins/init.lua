@@ -1,10 +1,11 @@
 return {
-	{
-		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end,
-	},
+	-- TODO: might conflict with nvim-surround
+	-- {
+	-- 	"windwp/nvim-ts-autotag",
+	-- 	config = function()
+	-- 		require("nvim-ts-autotag").setup()
+	-- 	end,
+	-- },
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -42,9 +43,7 @@ return {
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
 		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
+			require("nvim-surround").setup({})
 		end,
 	},
 	-- better text objects
@@ -61,3 +60,5 @@ return {
 	-- :KeyAnalyzer <C-
 	{ "meznaric/key-analyzer.nvim", opts = {} },
 }
+-- TODO:
+-- [ ] add blink.cmp
