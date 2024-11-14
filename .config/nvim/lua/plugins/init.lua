@@ -59,6 +59,13 @@ return {
 	-- :KeyAnalyzer <leader>b
 	-- :KeyAnalyzer <C-
 	{ "meznaric/key-analyzer.nvim", opts = {} },
+	{
+		"barrett-ruth/live-server.nvim",
+		build = "pnpm add -g live-server",
+		cmd = { "LiveServerStart", "LiveServerStart" },
+		config = true,
+		keys = { { "<leader>L", "<cmd>LiveServerToggle<cr>" } },
+	},
 }
 -- TODO:
 -- [ ] add blink.cmp
