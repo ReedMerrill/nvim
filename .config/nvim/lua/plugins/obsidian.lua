@@ -16,26 +16,26 @@ return {
 	},
 	lazy = true,
 	-- for activating on all markdown files
-	-- ft = "markdown",
+	ft = "markdown",
 	-- to only activate while inside a specified obsidian vault.
 	-- Function to return different autocmds depending on if its my personal or work laptop
-	event = function()
-		if vim.loop.os_uname().sysname == "Linux" then
-			return {
-				"BufReadPre " .. vim.fn.expand("~") .. "/Dropbox/obsidian-vaults/main/*.md",
-				"BufNewFile " .. vim.fn.expand("~") .. "/Dropbox/obsidian-vaults/main/*.md",
-			}
-		else
-			return {
-				"BufReadPre "
-					.. vim.fn.expand("~")
-					.. "/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
-				"BufNewFile "
-					.. vim.fn.expand("~")
-					.. "/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
-			}
-		end
-	end,
+	-- event = function()
+	-- 	if vim.loop.os_uname().sysname == "Linux" then
+	-- 		return {
+	-- 			"BufReadPre " .. vim.fn.expand("~") .. "/Dropbox/obsidian-vaults/main/*.md",
+	-- 			"BufNewFile " .. vim.fn.expand("~") .. "/Dropbox/obsidian-vaults/main/*.md",
+	-- 		}
+	-- 	else
+	-- 		return {
+	-- 			"BufReadPre "
+	-- 				.. vim.fn.expand("~")
+	-- 				.. "/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
+	-- 			"BufNewFile "
+	-- 				.. vim.fn.expand("~")
+	-- 				.. "/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
+	-- 		}
+	-- 	end
+	-- end,
 	dependencies = {
 		-- Required.
 		"nvim-lua/plenary.nvim",
@@ -56,6 +56,10 @@ return {
 					{
 						name = "CMB",
 						path = "/Users/reed/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB",
+					},
+					{
+						name = "main",
+						path = "/Users/reed/Dropbox (Personal)/obsidian-vaults/main",
 					},
 				},
 			}

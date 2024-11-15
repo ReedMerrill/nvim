@@ -1,2 +1,2 @@
-require("custom.sets")
+require("custom.opts")
 require("custom.remaps")

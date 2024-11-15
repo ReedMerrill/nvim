@@ -43,7 +43,7 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 20
 
 -- fast update time
-vim.opt.updatetime = 50
+vim.opt.updatetime = 0
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
