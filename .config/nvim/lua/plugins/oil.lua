@@ -14,7 +14,7 @@ return {
 			["<C-H>"] = false,
 			["<C-t>"] = false,
 			["<CR>"] = "actions.select",
-			["<C-p>"] = "actions.preview",
+			["<C-p>"] = false,
 			["<C-c>"] = "actions.close",
 			["<C-l>"] = false,
 			["-"] = "actions.parent",
@@ -68,7 +68,7 @@ return {
 		float = {
 			-- Padding around the floating window
 			padding = 2,
-			max_width = 50,
+			max_width = 120,
 			max_height = 25,
 			border = "rounded",
 			win_options = {

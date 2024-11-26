@@ -65,5 +65,6 @@ return {
 		keys = { { "<leader>L", "<cmd>LiveServerToggle<cr>" } },
 	},
 }
+
 -- TODO:
 -- [ ] add blink.cmp
