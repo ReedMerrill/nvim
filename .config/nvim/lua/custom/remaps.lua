@@ -65,12 +65,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set({ "n" }, "<leader>\\", ":vsplit<CR>", {})
 vim.keymap.set({ "n" }, "<leader>\\a", ":split<CR>", {})
 
--- Terminal
+-- Terminal navigation
 vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal Navigation" })
 vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Terminal Navigation" })
 vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal Navigation" })
--- this probably conflicts the tmux navigation stuff, but I never do because my
--- terminal is always on the left
 vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal Navigation" })
 -- Exit terminal mode
 vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
