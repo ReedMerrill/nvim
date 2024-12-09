@@ -29,6 +29,25 @@ vim.keymap.set("n", "<leader>c", "<cmd>bp<bar>bd#<cr>", { desc = "Close Current 
 
 -- editing
 
+-- (JavaScript) console.log the variable under the cursor, on the next line
+-- Function to insert a console.log statement
+local function insert_console_log()
+	-- Get the word under the cursor
+	local word = vim.fn.expand("<cword>")
+	if word and word ~= "" then
+		-- Insert the console.log statement
+		vim.api.nvim_put({ string.format("console.log('%s:', %s);", word, word) }, "l", true, true)
+	else
+		print("No word under the cursor.")
+	end
+end
+vim.api.nvim_set_keymap("n", "<leader>cl", "", {
+	noremap = true,
+	silent = true,
+	desc = "Log the current word",
+	callback = insert_console_log,
+})
+
 -- paste over a highlighted word w/o saving it to the register in visual mode
 vim.keymap.set("x", "<leader>dp", [["_dP]])
 
