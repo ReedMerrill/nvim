@@ -40,38 +40,25 @@ return {
 		-- Required.
 		"nvim-lua/plenary.nvim",
 	},
-	opts = function()
-		if vim.loop.os_uname().sysname == "Linux" then
-			return {
-				workspaces = {
-					{
-						name = "main",
-						path = "/home/reed/Dropbox/obsidian-vaults/main",
-					},
-				},
-			}
-		else
-			return {
-				workspaces = {
-					{
-						name = "CMB",
-						path = "/Users/reed/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB",
-					},
-					{
-						name = "main",
-						path = "/Users/reed/Dropbox (Personal)/obsidian-vaults/main",
-					},
-				},
-			}
-		end
-	end,
-	mappings = {
-		-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-		["gf"] = {
-			action = function()
-				return require("obsidian").util.gf_passthrough()
-			end,
-			opts = { noremap = false, expr = true, buffer = true },
+	opts = {
+		workspaces = {
+			{
+				name = "CMB",
+				path = "/Users/reed/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB",
+			},
+			{
+				name = "main",
+				path = "/Users/reed/Dropbox (Personal)/obsidian-vaults/main",
+			},
+		},
+		mappings = {
+			-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+			["gf"] = {
+				action = function()
+					return require("obsidian").util.gf_passthrough()
+				end,
+				opts = { noremap = false, expr = true, buffer = true },
+			},
 		},
 	},
 }
