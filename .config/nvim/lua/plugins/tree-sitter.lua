@@ -4,23 +4,27 @@ return {
 	opts = {
 		-- A list of parser names, or "all" (the five listed parsers should always be installed)
 		ensure_installed = {
+			-- required parsers
+			"c",
 			"lua",
 			"vim",
 			"vimdoc",
-			"javascript",
-			"typescript",
-			"css",
-			"html",
-			"bashls",
-			"r",
+			"query",
 			"markdown",
 			"markdown_inline",
-			"rnoweb",
-			"yaml",
-			"latex",
+			-- my added parsers
+			"bashls",
+			"css",
 			"csv",
+			"html",
+			"javascript",
 			"json",
-			"query",
+			"latex",
+			"python",
+			"r",
+			"rnoweb",
+			"typescript",
+			"yaml",
 		},
 		-- Install parsers synchronously (only applied to `ensure_installed`)
 		sync_install = true,
@@ -36,7 +40,7 @@ return {
 
 		highlight = {
 			enable = true,
-			-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+			-- These are the names of the parsers and not the filetype. (for example if you want to
 			-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
 			-- the name of the parser)
 			-- list of language that will be disabled
