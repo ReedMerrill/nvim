@@ -17,25 +17,6 @@ return {
 	lazy = true,
 	-- for activating on all markdown files
 	ft = "markdown",
-	-- to only activate while inside a specified obsidian vault.
-	-- Function to return different autocmds depending on if its my personal or work laptop
-	-- event = function()
-	-- 	if vim.loop.os_uname().sysname == "Linux" then
-	-- 		return {
-	-- 			"BufReadPre " .. vim.fn.expand("~") .. "/Dropbox/obsidian-vaults/main/*.md",
-	-- 			"BufNewFile " .. vim.fn.expand("~") .. "/Dropbox/obsidian-vaults/main/*.md",
-	-- 		}
-	-- 	else
-	-- 		return {
-	-- 			"BufReadPre "
-	-- 				.. vim.fn.expand("~")
-	-- 				.. "/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
-	-- 			"BufNewFile "
-	-- 				.. vim.fn.expand("~")
-	-- 				.. "/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB/*.md",
-	-- 		}
-	-- 	end
-	-- end,
 	dependencies = {
 		-- Required.
 		"nvim-lua/plenary.nvim",
@@ -51,6 +32,25 @@ return {
 				path = "/Users/reed/Dropbox (Personal)/obsidian-vaults/main",
 			},
 		},
+		-- customize how note IDs are generated given an optional title.
+		---@param title string|?
+		---@return string
+		note_id_func = function(title)
+			if title ~= nil then
+				-- Transform title into a valid file name.
+				title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+			else
+				-- If title is nil, return an error.
+				error("No file name argument provided.")
+			end
+			return title
+		end,
+		completion = {
+			-- Set to false to disable completion.
+			nvim_cmp = true,
+			-- Trigger completion at 2 chars.
+			min_chars = 2,
+		},
 		mappings = {
 			-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
 			["gf"] = {
@@ -58,6 +58,13 @@ return {
 					return require("obsidian").util.gf_passthrough()
 				end,
 				opts = { noremap = false, expr = true, buffer = true },
+			},
+			-- Toggle check-boxes.
+			["<leader>d"] = {
+				action = function()
+					return require("obsidian").util.toggle_checkbox()
+				end,
+				opts = { buffer = true },
 			},
 		},
 	},

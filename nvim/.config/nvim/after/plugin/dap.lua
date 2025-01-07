@@ -1,4 +1,5 @@
 require("dapui").setup()
+local dapui = require("dapui")
 require("nvim-dap-virtual-text").setup({ enabled = true, virt_text_pos = "inline" })
 require("dap-python").setup()
 vim.fn.sign_define(

@@ -1,20 +1,164 @@
 return {
+	-- Debugger
+	{ "mfussenegger/nvim-dap" },
+	-- DAP UI
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+	},
+	{ "theHamsta/nvim-dap-virtual-text" },
+	{ "mfussenegger/nvim-dap-python", dependencies = { "mfussenegger/nvim-dap" } },
+	-- keymap hints
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+		end,
+	},
+	{ "folke/trouble.nvim", opts = {} },
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.4",
+		dependencies = { { "nvim-lua/plenary.nvim" } },
+		opts = {
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--hidden",
+			},
+		},
+	},
+	{ "HiPhish/rainbow-delimiters.nvim" },
+	{
+		"alexghergh/nvim-tmux-navigation",
+		config = function()
+			require("nvim-tmux-navigation").setup({ disable_when_zoomed = true })
+		end,
+	},
+	{
+		-- Set lualine as statusline
+		"nvim-lualine/lualine.nvim",
+		opts = {
+			options = {
+				icons_enabled = true,
+				theme = "auto",
+				component_separators = "|",
+				section_separators = "",
+			},
+			sections = { lualine_a = { { "buffers" } } },
+		},
+	},
+	{
+		"stevearc/aerial.nvim",
+		-- optional
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+	},
+	{ "lewis6991/gitsigns.nvim", opts = {} },
+	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+	-- formatting
+	{ "stevearc/conform.nvim", opts = {} },
+	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = { enabled = true },
+			indent = { animate = { enabled = false } },
+			input = { enabled = true },
+			notifier = { enabled = true },
+			quickfile = { enabled = true },
+			rename = { enabled = true },
+			scope = { enabled = true },
+			scroll = { enabled = false },
+			statuscolumn = { enabled = true },
+			terminal = { enabled = true },
+			words = { enabled = true },
+			zen = { ---@class snacks.zen.Config
+				{
+					-- You can add any `Snacks.toggle` id here.
+					-- Toggle state is restored when the window is closed.
+					-- Toggle config options are NOT merged.
+					---@type table<string, boolean>
+					toggles = {
+						dim = true,
+						git_signs = true,
+						mini_diff_signs = true,
+						-- diagnostics = false,
+						-- inlay_hints = false,
+					},
+					show = {
+						statusline = false, -- can only be shown when using the global statusline
+						tabline = false,
+					},
+					---@type snacks.win.Config
+					win = { style = "zen" },
+					--- Callback when the window is opened.
+					---@param win snacks.win
+					on_open = function(win) end,
+					--- Callback when the window is closed.
+					---@param win snacks.win
+					on_close = function(win) end,
+					--- Options for the `Snacks.zen.zoom()`
+					---@type snacks.zen.Config
+					zoom = {
+						toggles = {},
+						show = { statusline = true, tabline = true },
+						win = {
+							backdrop = false,
+							width = 120, -- full width
+						},
+					},
+				},
+			},
+		},
+		keys = {
+			{
+				"C-t",
+				function()
+					Snacks.terminal.toggle()
+				end,
+				desc = "Toggle Terminal",
+			},
+			{
+				"<leader>.",
+				function()
+					Snacks.scratch()
+				end,
+				desc = "Toggle Scratch Buffer",
+			},
+			{
+				"<leader>S",
+				function()
+					Snacks.scratch.select()
+				end,
+				desc = "Select Scratch Buffer",
+			},
+		},
+	},
+	-- Tree-sitter auto HTML tags
 	{
 		"windwp/nvim-ts-autotag",
 		config = function()
 			require("nvim-ts-autotag").setup()
 		end,
 	},
+	-- Automatic closing brackets and quotes
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
-	},
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
 	},
 	-- theme
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
@@ -26,32 +170,20 @@ return {
 	"mbbill/undotree",
 	-- word highlighting and cycling
 	"RRethy/vim-illuminate",
-	-- neovim (lua) dev stuff
+	-- neovim dev stuff for lua
 	"folke/neodev.nvim",
 	-- list of warnings, errors, and telescope outputs
 	"folke/trouble.nvim",
 	-- icons
 	"nvim-tree/nvim-web-devicons",
-	{
-		"kdheepak/lazygit.nvim",
-		-- optional for floating window border decoration
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-	},
 	-- better text objects
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
+	-- more "around" and "inside" actions
 	{ "echasnovski/mini.ai", opts = {}, version = false },
-	-- show keybindings for a given mode and prefix. Mode defaults to "n"
-	--  usage:
-	-- :KeyAnalyzer <prefix> [mode]
-	-- :KeyAnalyzer <leader>
-	-- :KeyAnalyzer <leader>b
-	-- :KeyAnalyzer <C-
-	{ "meznaric/key-analyzer.nvim", opts = {} },
+	-- Launch a live server
 	{
 		"barrett-ruth/live-server.nvim",
 		build = "pnpm add -g live-server",
@@ -59,6 +191,7 @@ return {
 		config = true,
 		keys = { { "<leader>L", "<cmd>LiveServerToggle<cr>" } },
 	},
+	-- AI code suggestions
 	{
 		"huggingface/llm.nvim",
 		opts = {
