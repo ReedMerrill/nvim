@@ -95,5 +95,5 @@ vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 -- go to previous buffer
 vim.keymap.set("n", "<leader>b", "<cmd>b#<cr>", { noremap = true })
 -- cycle through open buffers
-vim.keymap.set("n", "<leader><tab>", "<cmd>bnext<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>S-<tab>", "<cmd>bprev<cr>", { noremap = true })
+vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { noremap = true })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<cr>", { noremap = true })

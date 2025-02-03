@@ -27,7 +27,8 @@ return {
 					local map = function(keys, func, desc)
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
-
+					-- LSP rename
+					map("grn", vim.lsp.buf.rename, "LSP rename")
 					-- Jump to the definition of the word under your cursor.
 					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 					-- Find references

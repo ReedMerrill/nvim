@@ -150,9 +150,13 @@ return {
 	-- Tree-sitter auto HTML tags
 	{
 		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end,
+		opts = {},
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		opts = {},
 	},
 	-- Automatic closing brackets and quotes
 	{
