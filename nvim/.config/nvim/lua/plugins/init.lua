@@ -47,7 +47,7 @@ return {
 		opts = {
 			options = {
 				icons_enabled = true,
-				theme = "auto",
+				theme = "ayu",
 				component_separators = "|",
 				section_separators = "",
 			},
@@ -77,6 +77,7 @@ return {
 			dashboard = { enabled = true },
 			indent = { animate = { enabled = false } },
 			input = { enabled = true },
+			lazygit = { enabled = true },
 			notifier = { enabled = true },
 			quickfile = { enabled = true },
 			rename = { enabled = true },
@@ -125,6 +126,13 @@ return {
 		},
 		keys = {
 			{
+				"<leader>lg",
+				function()
+					Snacks.lazygit()
+				end,
+				desc = "Toggle lazygit",
+			},
+			{
 				"<leader>.",
 				function()
 					Snacks.scratch()
@@ -158,7 +166,7 @@ return {
 		config = true,
 	},
 	-- theme
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	{ "Shatur/neovim-ayu", priority = 1000 },
 	-- plenary
 	"nvim-lua/plenary.nvim",
 	-- harpoon

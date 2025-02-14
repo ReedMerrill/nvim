@@ -24,7 +24,7 @@ require("lazy").setup("plugins")
 require("custom")
 
 -- theme
-vim.cmd.colorscheme("catppuccin-mocha")
+require("ayu").colorscheme()
 
 -- set color column to be blank whenever wrap is set
 vim.api.nvim_create_autocmd("BufEnter", {
