@@ -125,13 +125,6 @@ return {
 		},
 		keys = {
 			{
-				"C-t",
-				function()
-					Snacks.terminal.toggle()
-				end,
-				desc = "Toggle Terminal",
-			},
-			{
 				"<leader>.",
 				function()
 					Snacks.scratch()

@@ -89,8 +89,6 @@ vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal Navigation"
 vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Terminal Navigation" })
 vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal Navigation" })
 vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal Navigation" })
--- Exit terminal mode
-vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 
 -- go to previous buffer
 vim.keymap.set("n", "<leader>b", "<cmd>b#<cr>", { noremap = true })
