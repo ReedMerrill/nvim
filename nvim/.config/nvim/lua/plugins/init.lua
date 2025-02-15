@@ -16,7 +16,7 @@ return {
 			vim.o.timeout = true
 		end,
 	},
-	{ "folke/trouble.nvim", opts = {} },
+
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.4",
@@ -79,6 +79,7 @@ return {
 			input = { enabled = true },
 			lazygit = { enabled = true },
 			notifier = { enabled = true },
+			picker = { enabled = true },
 			quickfile = { enabled = true },
 			rename = { enabled = true },
 			scope = { enabled = true },
@@ -178,7 +179,30 @@ return {
 	-- neovim dev stuff for lua
 	"folke/neodev.nvim",
 	-- list of warnings, errors, and telescope outputs
-	"folke/trouble.nvim",
+	{
+		"folke/trouble.nvim",
+		optional = true,
+		specs = {
+			"folke/snacks.nvim",
+			opts = function(_, opts)
+				return vim.tbl_deep_extend("force", opts or {}, {
+					picker = {
+						actions = require("trouble.sources.snacks").actions,
+						win = {
+							input = {
+								keys = {
+									["<c-t>"] = {
+										"trouble_open",
+										mode = { "n", "i" },
+									},
+								},
+							},
+						},
+					},
+				})
+			end,
+		},
+	},
 	-- icons
 	"nvim-tree/nvim-web-devicons",
 	-- better text objects
