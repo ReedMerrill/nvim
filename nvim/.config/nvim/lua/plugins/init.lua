@@ -1,4 +1,14 @@
 return {
+	-- theme
+	{
+		"EdenEast/nightfox.nvim",
+		config = function()
+			vim.cmd("colorscheme nightfox")
+			vim.api.nvim_set_hl(0, "Normal", { bg = "#0d1021" })
+		end,
+	},
+	-- color code highlights
+	{ "brenoprata10/nvim-highlight-colors", opts = {} },
 	-- Debugger
 	{ "mfussenegger/nvim-dap" },
 	-- DAP UI
@@ -166,16 +176,12 @@ return {
 		event = "InsertEnter",
 		config = true,
 	},
-	-- theme
-	{ "Shatur/neovim-ayu", priority = 1000 },
 	-- plenary
 	"nvim-lua/plenary.nvim",
 	-- harpoon
 	"ThePrimeagen/harpoon",
 	-- undo tree
 	"mbbill/undotree",
-	-- word highlighting and cycling
-	"RRethy/vim-illuminate",
 	-- neovim dev stuff for lua
 	"folke/neodev.nvim",
 	-- list of warnings, errors, and telescope outputs

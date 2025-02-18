@@ -20,7 +20,7 @@ return {
 			desc = "Buffers",
 		},
 		{
-			"<leader>/",
+			"<leader>fs",
 			function()
 				Snacks.picker.grep()
 			end,
@@ -112,13 +112,13 @@ return {
 			end,
 			desc = "Git Log File",
 		},
-		-- Grep
+		-- Grep current buffer
 		{
-			"<leader>fs",
+			"<leader>/",
 			function()
 				Snacks.picker.lines()
 			end,
-			desc = "Buffer Lines",
+			desc = "Grep current buffer",
 		},
 		{
 			"<leader>fS",

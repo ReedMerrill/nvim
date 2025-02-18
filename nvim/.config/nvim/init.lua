@@ -23,9 +23,6 @@ require("lazy").setup("plugins")
 -- load sets and remaps
 require("custom")
 
--- theme
-require("ayu").colorscheme()
-
 -- set color column to be blank whenever wrap is set
 vim.api.nvim_create_autocmd("BufEnter", {
 	-- call on every file type
