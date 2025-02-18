@@ -4,7 +4,6 @@ return {
 		"EdenEast/nightfox.nvim",
 		config = function()
 			vim.cmd("colorscheme nightfox")
-			vim.api.nvim_set_hl(0, "Normal", { bg = "#0d1021" })
 		end,
 	},
 	-- color code highlights
