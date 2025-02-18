@@ -23,6 +23,9 @@ require("lazy").setup("plugins")
 -- load sets and remaps
 require("custom")
 
+-- custom bg colour
+vim.api.nvim_set_hl(0, "Normal", { bg = "#0d1021" })
+
 -- set color column to be blank whenever wrap is set
 vim.api.nvim_create_autocmd("BufEnter", {
 	-- call on every file type
