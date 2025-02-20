@@ -25,24 +25,6 @@ return {
 			vim.o.timeout = true
 		end,
 	},
-
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.4",
-		dependencies = { { "nvim-lua/plenary.nvim" } },
-		opts = {
-			vimgrep_arguments = {
-				"rg",
-				"--color=never",
-				"--no-heading",
-				"--with-filename",
-				"--line-number",
-				"--column",
-				"--smart-case",
-				"--hidden",
-			},
-		},
-	},
 	{ "HiPhish/rainbow-delimiters.nvim" },
 	{
 		"alexghergh/nvim-tmux-navigation",
@@ -134,44 +116,43 @@ return {
 			terminal = { enabled = true },
 			words = { enabled = true },
 			zen = { ---@class snacks.zen.Config
-				{
-					-- You can add any `Snacks.toggle` id here.
-					-- Toggle state is restored when the window is closed.
-					-- Toggle config options are NOT merged.
-					---@type table<string, boolean>
-					toggles = {
-						dim = true,
-						git_signs = true,
-						mini_diff_signs = true,
-						-- diagnostics = false,
-						-- inlay_hints = false,
-					},
-					show = {
-						statusline = false, -- can only be shown when using the global statusline
-						tabline = false,
-					},
-					---@type snacks.win.Config
-					win = { style = "zen" },
-					--- Callback when the window is opened.
-					---@param win snacks.win
-					on_open = function(win) end,
-					--- Callback when the window is closed.
-					---@param win snacks.win
-					on_close = function(win) end,
-					--- Options for the `Snacks.zen.zoom()`
-					---@type snacks.zen.Config
-					zoom = {
-						toggles = {},
-						show = { statusline = true, tabline = true },
-						win = {
-							backdrop = false,
-							width = 120, -- full width
-						},
+				-- You can add any `Snacks.toggle` id here.
+				-- Toggle state is restored when the window is closed.
+				-- Toggle config options are NOT merged.
+				---@type table<string, boolean>
+				toggles = {
+					dim = true,
+					git_signs = true,
+					mini_diff_signs = true,
+					-- diagnostics = false,
+					-- inlay_hints = false,
+				},
+				show = {
+					statusline = false, -- can only be shown when using the global statusline
+					tabline = false,
+				},
+				---@type snacks.win.Config
+				win = { style = "zen" },
+				--- Callback when the window is opened.
+				---@param win snacks.win
+				on_open = function(win) end,
+				--- Callback when the window is closed.
+				---@param win snacks.win
+				on_close = function(win) end,
+				--- Options for the `Snacks.zen.zoom()`
+				---@type snacks.zen.Config
+				zoom = {
+					toggles = {},
+					show = { statusline = true, tabline = true },
+					win = {
+						backdrop = false,
+						width = 120, -- full width
 					},
 				},
 			},
 		},
 		keys = {
+			-- lazygit
 			{
 				"<leader>lg",
 				function()
@@ -179,19 +160,20 @@ return {
 				end,
 				desc = "Toggle lazygit",
 			},
+			-- scratch buffer
 			{
 				"<leader>.",
 				function()
 					Snacks.scratch()
 				end,
-				desc = "Toggle Scratch Buffer",
+				desc = "Toggle scratch buffer",
 			},
 			{
-				"<leader>S",
+				"<leader>z",
 				function()
-					Snacks.scratch.select()
+					Snacks.zen()
 				end,
-				desc = "Select Scratch Buffer",
+				desc = "Toggle zen mode",
 			},
 		},
 	},
@@ -216,8 +198,6 @@ return {
 	"nvim-lua/plenary.nvim",
 	-- harpoon
 	"ThePrimeagen/harpoon",
-	-- undo tree
-	"mbbill/undotree",
 	-- neovim dev stuff for lua
 	"folke/neodev.nvim",
 	-- list of warnings, errors, and telescope outputs

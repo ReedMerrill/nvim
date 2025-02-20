@@ -242,7 +242,7 @@ return {
 			desc = "Quickfix List",
 		},
 		{
-			"<leader>sR",
+			"<leader>u",
 			function()
 				Snacks.picker.resume()
 			end,
