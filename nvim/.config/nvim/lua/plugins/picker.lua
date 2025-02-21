@@ -42,7 +42,7 @@ return {
 			desc = "Buffers",
 		},
 		{
-			"<leader>ff",
+			"<leader>f",
 			function()
 				Snacks.picker.files()
 			end,
@@ -242,14 +242,14 @@ return {
 			desc = "Quickfix List",
 		},
 		{
-			"<leader>u",
+			"<leader>ff",
 			function()
 				Snacks.picker.resume()
 			end,
 			desc = "Resume",
 		},
 		{
-			"<leader>su",
+			"<leader>u",
 			function()
 				Snacks.picker.undo()
 			end,

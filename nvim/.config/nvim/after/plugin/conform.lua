@@ -38,6 +38,6 @@ end, {
 	desc = "Re-enable autoformat-on-save",
 })
 
-vim.keymap.set("", "<leader>f", function()
+vim.keymap.set("", "<leader>fm", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end)
