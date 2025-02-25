@@ -1,4 +1,10 @@
 return {
+	-- telescope (for LSP actions, not the picker)
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.8",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 	-- theme
 	{
 		"EdenEast/nightfox.nvim",
@@ -107,7 +113,6 @@ return {
 			input = { enabled = true },
 			lazygit = { enabled = true },
 			notifier = { enabled = true },
-			picker = { enabled = true },
 			quickfile = { enabled = true },
 			rename = { enabled = true },
 			scope = { enabled = true },
@@ -189,11 +194,11 @@ return {
 		opts = {},
 	},
 	-- Automatic closing brackets and quotes
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
-	},
+	-- {
+	-- 	"windwp/nvim-autopairs",
+	-- 	event = "InsertEnter",
+	-- 	config = true,
+	-- },
 	-- plenary
 	"nvim-lua/plenary.nvim",
 	-- harpoon
@@ -265,6 +270,34 @@ return {
 			-- BUG:: might not be doing anything
 			{ mode = "n", "<M-s>", "<cmd>LLMSuggestion<cr>", desc = "Request LLM Suggestion" },
 		},
+	},
+	{
+		"hat0uma/csvview.nvim",
+		---@module "csvview"
+		---@type CsvView.Options
+		opts = {
+			parser = { comments = { "#", "//" } },
+			keymaps = {
+				-- Text objects for selecting fields
+				textobject_field_inner = { "if", mode = { "o", "x" } },
+				textobject_field_outer = { "af", mode = { "o", "x" } },
+				-- Excel-like navigation:
+				-- Use <Tab> and <S-Tab> to move horizontally between fields.
+				-- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+				-- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+				jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+				jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+				jump_next_row = { "<Enter>", mode = { "n", "v" } },
+				jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+			},
+		},
+		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+	},
+	{
+		"altermo/ultimate-autopair.nvim",
+		event = { "InsertEnter", "CmdlineEnter" },
+		branch = "v0.6", --recommended as each new version will have breaking changes
+		opts = {},
 	},
 }
 -- TODO:
