@@ -23,7 +23,8 @@ require("lazy").setup("plugins")
 -- load sets and remaps
 require("custom")
 
--- custom bg colour
+-- load colorscheme
+vim.cmd("colorscheme nightfox")
 vim.api.nvim_set_hl(0, "Normal", { bg = "#0d1021" })
 
 -- set color column to be blank whenever wrap is set

@@ -6,12 +6,7 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	-- theme
-	{
-		"EdenEast/nightfox.nvim",
-		config = function()
-			vim.cmd("colorscheme nightfox")
-		end,
-	},
+	{ "EdenEast/nightfox.nvim", opts = {} },
 	-- color code highlights
 	{ "brenoprata10/nvim-highlight-colors", opts = {} },
 	-- Debugger
@@ -96,6 +91,13 @@ return {
 				"<cmd>Trouble qflist toggle<cr>",
 				desc = "Quickfix List (Trouble)",
 			},
+			{
+				"<leader>nh",
+				function()
+					Snacks.notifier.show_history()
+				end,
+				desc = "Show Notification History",
+			},
 		},
 	},
 	{
@@ -109,10 +111,11 @@ return {
 			-- refer to the configuration section below
 			bigfile = { enabled = true },
 			dashboard = { enabled = true },
+			gitbrowse = { enable = true },
 			indent = { animate = { enabled = false } },
 			input = { enabled = true },
 			lazygit = { enabled = true },
-			notifier = { enabled = true },
+			notifier = { height = { min = 1, max = 0.6 }, width = { min = 1, max = 0.8 } },
 			quickfile = { enabled = true },
 			rename = { enabled = true },
 			scope = { enabled = true },
@@ -126,7 +129,7 @@ return {
 				-- Toggle config options are NOT merged.
 				---@type table<string, boolean>
 				toggles = {
-					dim = true,
+					dim = false,
 					git_signs = true,
 					mini_diff_signs = true,
 					-- diagnostics = false,
@@ -151,7 +154,7 @@ return {
 					show = { statusline = true, tabline = true },
 					win = {
 						backdrop = false,
-						width = 120, -- full width
+						width = 120,
 					},
 				},
 			},
@@ -179,6 +182,14 @@ return {
 					Snacks.zen()
 				end,
 				desc = "Toggle zen mode",
+			},
+			{
+				"<leader>gB",
+				function()
+					Snacks.gitbrowse()
+				end,
+				desc = "Git Browse",
+				mode = { "n", "v" },
 			},
 		},
 	},
