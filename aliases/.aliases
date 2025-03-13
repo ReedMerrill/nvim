@@ -10,6 +10,8 @@ alias so='source ~/.zshrc'
 alias ndf='cd ~/dotfiles/nvim/.config/nvim/ && nvim .'
 # [g]it [s]tatus
 alias gs='git status'
+# [g]it [l]og
+alias gs='git log --oneline'
 # make R not prompt to save workspace on exit
 alias R='R --no-save'
 # [n]uclear [r]e[m]ove
