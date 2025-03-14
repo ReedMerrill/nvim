@@ -75,3 +75,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export ucpw=$(security find-generic-password -a "$USER" -s ucalgarypw -w)
+export GPG_TTY=$(tty)
