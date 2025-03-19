@@ -2,7 +2,7 @@ require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "black" },
-		r = { "styler" },
+		r = { "air" },
 		javascript = { "prettier" },
 		html = { "prettier" },
 		markdown = { "prettier" },
@@ -15,8 +15,7 @@ require("conform").setup({
 		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 			return
 		end
-		-- A very big timeout because styler is like a turtle
-		return { timeout_ms = 60000, lsp_format = "fallback" }
+		return { timeout_ms = 1000, lsp_format = "fallback" }
 	end,
 })
 

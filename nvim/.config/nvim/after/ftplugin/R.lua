@@ -10,3 +10,5 @@ vim.opt.wrap = false
 vim.api.nvim_set_keymap("i", "<C-j>", " <- ", { noremap = true })
 -- assignment operator insertion
 vim.api.nvim_set_keymap("i", "<C-k>", " |>", { noremap = true })
+-- membership operator insertion
+vim.api.nvim_set_keymap("i", "<C-i>", "%in%", { noremap = true })
