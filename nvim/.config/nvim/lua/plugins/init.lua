@@ -204,12 +204,6 @@ return {
 		event = "VeryLazy",
 		opts = {},
 	},
-	-- Automatic closing brackets and quotes
-	-- {
-	-- 	"windwp/nvim-autopairs",
-	-- 	event = "InsertEnter",
-	-- 	config = true,
-	-- },
 	-- plenary
 	"nvim-lua/plenary.nvim",
 	-- harpoon
