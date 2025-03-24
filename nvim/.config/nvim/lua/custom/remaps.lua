@@ -74,6 +74,21 @@ vim.api.nvim_set_keymap(
 -- make the file in buffer executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file executable" })
 
+-- yank the path to the current file to the system clipboard
+function CopyPath()
+	local filepath = vim.fn.expand("%")
+	vim.fn.setreg("+", '"' .. filepath .. '"')
+	local function notifyAndClear(path) -- notify success and then clear the console
+		print(string.format("%s copied", path))
+		vim.defer_fn(function()
+			vim.cmd("echo ''")
+		end, 1000)
+	end
+	notifyAndClear(filepath)
+end
+
+vim.keymap.set("n", "<leader>yp", CopyPath, { noremap = true, silent = true })
+
 -- move visual mode text up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
