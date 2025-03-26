@@ -110,3 +110,15 @@ vim.keymap.set("n", "<leader>b", "<cmd>b#<cr>", { noremap = true })
 -- cycle through open buffers
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { noremap = true })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<cr>", { noremap = true })
+
+-- resizing
+vim.keymap.set("n", "<A-l>", "<C-w>>", { noremap = true, desc = "Increase horizontal size" })
+vim.keymap.set("n", "<A-h>", "<C-w><", { noremap = true, desc = "Decrease horizontal size" })
+vim.keymap.set("n", "<A-k>", "<C-w>+", { noremap = true, desc = "Increase vertical size" })
+vim.keymap.set("n", "<A-j>", "<C-w>-", { noremap = true, desc = "Decrease vertical size" })
+
+-- move
+vim.keymap.set("n", "<A-L>", "<C-w>L", { noremap = true, desc = "Move right" })
+vim.keymap.set("n", "<A-H>", "<C-w>H", { noremap = true, desc = "Move left" })
+vim.keymap.set("n", "<A-K>", "<C-w>K", { noremap = true, desc = "Move up" })
+vim.keymap.set("n", "<A-J>", "<C-w>J", { noremap = true, desc = "Move down" })

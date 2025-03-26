@@ -249,13 +249,6 @@ return {
 			desc = "Resume",
 		},
 		{
-			"<leader>u",
-			function()
-				Snacks.picker.undo()
-			end,
-			desc = "Undo History",
-		},
-		{
 			"<leader>uC",
 			function()
 				Snacks.picker.colorschemes()

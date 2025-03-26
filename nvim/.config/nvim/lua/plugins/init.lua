@@ -101,6 +101,12 @@ return {
 		},
 	},
 	{
+		"mbbill/undotree",
+		config = function()
+			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+		end,
+	},
+	{
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
