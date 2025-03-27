@@ -18,7 +18,7 @@ cmd - l : yabai -m window --focus east
 # shift + alt - l : yabai -m window --swap east
 
 # mission control
-alt - z : yabai -m space --toggle mission-control
+alt - k : yabai -m space --toggle mission-control
 
 # move window
 shift + cmd - h : yabai -m window --warp west
