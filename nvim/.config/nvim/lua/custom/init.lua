@@ -1,2 +1,2 @@
 require("custom.opts")
-require("custom.remaps")
+require("custom.keymaps")

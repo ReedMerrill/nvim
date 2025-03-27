@@ -27,6 +27,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- close the buffer, not the window (container)
 vim.keymap.set("n", "<leader>c", "<cmd>bp<bar>bd#<cr>", { desc = "Close Current Buffer" })
 
+-- change the working to the wd of the current buffer
+vim.keymap.set("n", "<leader>wd", "<cmd>cd %:p:h<cr>", { desc = "Set parent to working dir" })
+
 -- editing
 
 -- (JavaScript) console.log the variable under the cursor, on the next line
