@@ -1,3 +1,5 @@
+# python is python3
+alias python='python3'
 # Lazygit
 alias lg='lazygit'
 # [f]ile [o]pen: open anything, using rifle as the opener
@@ -11,12 +13,12 @@ alias ndf='cd ~/dotfiles/nvim/.config/nvim/ && nvim .'
 # [g]it [s]tatus
 alias gs='git status'
 # [g]it [l]og
-alias gs='git log --oneline'
+alias gl='git log --oneline'
 # make R not prompt to save workspace on exit
 alias R='R --no-save'
 # [n]uclear [r]e[m]ove
 alias nrm='sudo rm -r'
-# clear
+# clear the terminal
 alias cl='clear'
-# make dir (all non-existent directories in the specified path)
+# make dir (and all non-existent directories in the specified path)
 alias md='mkdir -p'
