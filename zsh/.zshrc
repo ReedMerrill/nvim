@@ -77,3 +77,21 @@ unset __conda_setup
 
 export ucpw=$(security find-generic-password -a "$USER" -s ucalgarypw -w)
 export GPG_TTY=$(tty)
+
+# Automatically activate venv if in project directory
+function cd() {
+  builtin cd "$@" || return 1
+
+  if [ -d "venv" ]; then
+    if [ -z "$VIRTUAL_ENV" ]; then
+      # Activate virtual environment if not already active
+      source venv/bin/activate
+    fi
+  else
+    # Deactivate venv if it was activated and we're leaving the project directory
+    if [ -n "$VIRTUAL_ENV" ]; then
+      deactivate
+    fi
+  fi
+}
+
