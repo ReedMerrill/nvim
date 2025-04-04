@@ -200,7 +200,7 @@ return {
 			desc = "Jumps",
 		},
 		{
-			"<leader>sk",
+			"<leader>fk",
 			function()
 				Snacks.picker.keymaps()
 			end,
