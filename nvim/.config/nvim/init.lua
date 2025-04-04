@@ -44,7 +44,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
--- disable spell checking for terminal windows
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	command = "TSBufEnable highlight",
+})
+
 vim.cmd([[
   autocmd TermOpen * setlocal nospell
 ]])

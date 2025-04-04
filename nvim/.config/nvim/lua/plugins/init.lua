@@ -10,6 +10,20 @@ return {
 			})
 		end,
 	},
+	-- job runner
+	{
+		"stevearc/overseer.nvim",
+		opts = {},
+		config = function()
+			require("overseer").setup({
+				templates = { "user.RShiny" },
+			})
+		end,
+	},
+	-- toggleterm (for job running)
+	{
+		{ "akinsho/toggleterm.nvim", version = "*", config = true },
+	},
 	-- telescope (for LSP actions, not the picker)
 	{
 		"nvim-telescope/telescope.nvim",
