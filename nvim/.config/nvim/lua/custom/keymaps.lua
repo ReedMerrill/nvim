@@ -57,6 +57,10 @@ vim.keymap.set("x", "<leader>dp", [["_dP]])
 -- yank to the system register in visual and normal modes
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", [["+y]], { noremap = true, desc = "Yank to the system clipboard" })
 
+-- yank the current word or WORD from anywhere inside of them
+vim.keymap.set("n", "yw", "viwy", { noremap = true, silent = true })
+vim.keymap.set("n", "yW", "viWy", { noremap = true, silent = true })
+
 -- yank the entire buffer to the system register
 vim.keymap.set(
 	{ "n", "v", "x" },
@@ -73,9 +77,6 @@ vim.api.nvim_set_keymap(
 	":%delete+<CR>",
 	{ noremap = true, silent = true, desc = "Delete everything" }
 )
-
--- make the file in buffer executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file executable" })
 
 -- yank the path to the current file to the system clipboard
 function CopyPath()
@@ -107,6 +108,11 @@ vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal Navigation"
 vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Terminal Navigation" })
 vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal Navigation" })
 vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal Navigation" })
+
+-- escape terminal mode
+vim.keymap.set("t", "<esc><esc>", function()
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "n", true)
+end, { noremap = true, desc = "Escape terminal mode" })
 
 -- go to previous buffer
 vim.keymap.set("n", "<leader>b", "<cmd>b#<cr>", { noremap = true })

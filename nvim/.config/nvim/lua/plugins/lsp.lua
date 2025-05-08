@@ -86,6 +86,7 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
+				rust_analyzer = {},
 				pyright = {},
 				html = {},
 				ts_ls = {},
@@ -242,5 +243,23 @@ return {
 				},
 			})
 		end,
+	},
+	-- WARN: This might not work below neovim 0.11
+	{
+		-- Diagnostics messages
+		vim.diagnostic.config({
+			signs = { priority = 9999 },
+			underline = true,
+			update_in_insert = false, -- false so diags are updated on InsertLeave
+			virtual_lines = { current_line = true },
+			severity_sort = true,
+			float = {
+				focusable = false,
+				style = "minimal",
+				border = "rounded",
+				source = true,
+				header = "",
+			},
+		}),
 	},
 }
