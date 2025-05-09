@@ -95,3 +95,6 @@ function cd() {
   fi
 }
 
+
+# Created by `pipx` on 2025-05-08 02:56:54
+export PATH="$PATH:/Users/reed/.local/bin"

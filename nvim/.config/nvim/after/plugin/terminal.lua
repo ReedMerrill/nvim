@@ -22,4 +22,4 @@ end
 local command = 'Rscript -e "shiny::runApp(port = 3000, launch.browser = TRUE)"'
 
 -- Example keybindings for different commands
-create_custom_terminal(command, "<leader>rr")
+create_custom_terminal(command, "<leader>ra")
