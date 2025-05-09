@@ -21,7 +21,9 @@ vim.g.maplocalleader = " "
 require("lazy").setup("plugins")
 
 -- load sets and remaps
-require("custom")
+require("custom.keymaps")
+require("custom.opts")
+require("custom.lsp")
 
 -- load colorscheme
 vim.cmd("colorscheme nightfox")
@@ -53,9 +55,7 @@ vim.cmd([[
   autocmd TermOpen * setlocal nospell
 ]])
 
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
+-- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
