@@ -23,7 +23,6 @@ require("lazy").setup("plugins")
 -- load sets and remaps
 require("custom.keymaps")
 require("custom.opts")
-require("custom.lsp")
 
 -- load colorscheme
 vim.cmd("colorscheme nightfox")
