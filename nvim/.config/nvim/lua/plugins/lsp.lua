@@ -3,8 +3,8 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for neovim
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
 		config = function()
@@ -83,21 +83,59 @@ return {
 			-- for you, so that they are available from within Neovim.
 			local servers = {
 				-- LSPs
-				"bashls",
-				"html",
-				"lua_ls",
-				"pyright",
-				"r_language_server",
-				"rust_analyzer",
-				-- formatters
-				"black",
-				"prettier",
-				"stylua", -- Used to format lua code
+				bashls = {
+					on_attach = function()
+						print("bashls attached")
+					end,
+				},
+				html = {
+					on_attach = function()
+						print("html LSP attached")
+					end,
+				},
+				pyright = {},
+				lua_ls = {
+					on_attach = function()
+						print("lua_ls attached")
+					end,
+					settings = {
+						Lua = {
+							runtime = { version = "LuaJIT" },
+							workspace = {
+								checkThirdParty = false,
+								-- Tells lua_ls where to find all the Lua files that you have loaded
+								-- for your neovim configuration.
+								library = {
+									"${3rd}/luv/library",
+									unpack(vim.api.nvim_get_runtime_file("", true)),
+								},
+							},
+							completion = {
+								callSnippet = "Replace",
+							},
+							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+							diagnostics = { disable = { "missing-fields" } },
+						},
+					},
+				},
+				r_language_server = {
+					on_attach = function()
+						print("r_language_server attached")
+					end,
+					filetypes = { "r", "rmd", "quarto" },
+					root_dir = function(bufnr, on_dir)
+						on_dir(vim.fs.root(bufnr, ".git") or vim.uv.os_homedir())
+					end,
+				},
+				rust_analyzer = {
+					on_attach = function()
+						print("rust_analyzer attached")
+					end,
+				},
 			}
 
 			require("mason-lspconfig").setup({
 				automatic_enable = true, -- make the default explicit
-				ensure_installed = servers,
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
