@@ -2,6 +2,7 @@ return {
 	"Vigemus/iron.nvim",
 	config = function()
 		local iron = require("iron.core")
+		local view = require("iron.view")
 		-- Iron core configuration
 		iron.setup({
 			config = {
@@ -9,6 +10,8 @@ return {
 				should_map_plug = false,
 				-- Whether a repl should be discarded or not
 				scratch_repl = true,
+				-- How the repl window will be displayed
+				repl_open_cmd = view.split.vertical.botright(90),
 				-- Your repl definitions come here
 				repl_definition = {
 					quarto = {
@@ -20,8 +23,6 @@ return {
 						format = require("iron.fts.common").bracketed_paste,
 					},
 				},
-				-- How the repl window will be displayed
-				repl_open_cmd = require("iron.view").right(0.5),
 			},
 			-- Keymaps for iron functions
 			keymaps = {

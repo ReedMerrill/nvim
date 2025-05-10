@@ -90,7 +90,6 @@ function CopyPath()
 	end
 	notifyAndClear(filepath)
 end
-
 vim.keymap.set("n", "<leader>yp", CopyPath, { noremap = true, silent = true })
 
 -- move visual mode text up and down
