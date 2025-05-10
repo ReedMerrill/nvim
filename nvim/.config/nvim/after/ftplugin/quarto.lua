@@ -7,3 +7,5 @@ vim.api.nvim_set_keymap("i", "<C-j>", " <- ", { noremap = true })
 vim.api.nvim_set_keymap("i", "<C-k>", " |>", { noremap = true })
 -- membership operator insertion
 vim.api.nvim_set_keymap("i", "<C-l>", "%in%", { noremap = true })
+
+vim.keymap.set("n", "<leader>at", "<cmd>AerialToggle!<CR>", { desc = "Toggle outline" })

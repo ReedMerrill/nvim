@@ -7,5 +7,3 @@ require("aerial").setup({
 		vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
 	end,
 })
--- You probably also want to set a keymap to toggle aerial
-vim.keymap.set("n", "<leader>at", "<cmd>AerialToggle!<CR>", { desc = "Toggle outline" })
