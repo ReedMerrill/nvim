@@ -74,3 +74,18 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 		end)
 	end,
 })
+
+-- for dev --------------------
+
+-- print the contents of a lua table
+P = function(v)
+	print(vim.inspect(v))
+	return v
+end
+
+-- source current file
+vim.keymap.set("n", "<leader>lxx", function()
+	vim.cmd("w")
+	vim.cmd("source %")
+	print("current lua file sourced")
+end)
