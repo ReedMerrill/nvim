@@ -1,5 +1,4 @@
 return {
-	{ dir = "/Users/reed/code/responsive.nvim" },
 	-- add lua docs to the vim help pages
 	{ "nanotee/luv-vimdocs" },
 	{
