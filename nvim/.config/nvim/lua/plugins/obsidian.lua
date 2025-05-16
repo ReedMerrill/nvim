@@ -66,7 +66,8 @@ return {
 			-- Toggle check-boxes.
 			["<leader>d"] = {
 				action = function()
-					return require("obsidian").util.toggle_checkbox()
+					require("obsidian").util.toggle_checkbox()
+					vim.cmd("normal j")
 				end,
 				opts = { buffer = true },
 			},

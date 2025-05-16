@@ -1,4 +1,7 @@
 return {
+	{ dir = "/Users/reed/code/responsive.nvim" },
+	-- add lua docs to the vim help pages
+	{ "nanotee/luv-vimdocs" },
 	{
 		"geg2102/nvim-python-repl",
 		dependencies = "nvim-treesitter",
@@ -32,8 +35,6 @@ return {
 	},
 	-- theme
 	{ "EdenEast/nightfox.nvim", opts = {} },
-	-- color code highlights
-	{ "brenoprata10/nvim-highlight-colors", opts = {} },
 	-- Debugger
 	{ "mfussenegger/nvim-dap" },
 	-- DAP UI
@@ -68,7 +69,7 @@ return {
 				component_separators = "|",
 				section_separators = "",
 			},
-			sections = { lualine_a = { { "buffers" } } },
+			sections = { lualine_a = { "%f" } },
 		},
 	},
 	{
