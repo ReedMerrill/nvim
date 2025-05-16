@@ -1,5 +1,5 @@
 return {
-	{ dir = "/Users/reed/code/responsive.nvim" },
+	{ dir = "/Users/reed/code/reactive_splits.nvim" },
 	-- add lua docs to the vim help pages
 	{ "nanotee/luv-vimdocs" },
 	{
