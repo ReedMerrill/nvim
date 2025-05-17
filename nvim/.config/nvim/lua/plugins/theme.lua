@@ -1,5 +1,7 @@
 return {
 	"thesimonho/kanagawa-paper.nvim",
+	-- just to load the lualine theme
+	depends = "rebelot/kanagawa.nvim",
 	lazy = false,
 	priority = 1000,
 	opts = {
