@@ -1,16 +1,12 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 
--- This will hold the configuration.
 local config = wezterm.config_builder()
-
+config.automatically_reload_config = true
 config.set_environment_variables = { COLORTERM = "truecolor" }
 
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
-config.color_scheme = "nightfox"
-config.colors = { background = "#0d1021" }
+config.color_scheme = "kanagawa (Gogh)"
+-- config.colors = { background = "#0d1021" }
 config.enable_tab_bar = false
 config.font = wezterm.font("0xProto Nerd Font Mono", { weight = "Regular" })
 config.font_size = 13.5
@@ -44,5 +40,4 @@ config.keys = {
 	},
 }
 
--- and finally, return the configuration to wezterm
 return config

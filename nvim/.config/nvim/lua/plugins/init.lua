@@ -14,7 +14,8 @@ return {
 			show_modified = true,
 			show_navic = false,
 			theme = {
-				normal = { bg = "#0d1021" },
+				normal = { bg = "#1f1f28", fg = "#DCD7BA" },
+				basename = { bold = false },
 			},
 		},
 	},
@@ -45,8 +46,6 @@ return {
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	-- theme
-	{ "EdenEast/nightfox.nvim", opts = {} },
 	-- Debugger
 	{ "mfussenegger/nvim-dap" },
 	-- DAP UI
@@ -70,12 +69,12 @@ return {
 		opts = {
 			options = {
 				icons_enabled = true,
-				theme = "nightfox",
+				theme = "auto",
 				component_separators = "",
 				section_separators = "",
 			},
 			sections = {
-				lualine_a = { "lsp_status" },
+				lualine_a = {},
 				lualine_c = {},
 				lualine_x = { "encoding", "fileformat" },
 				lualine_y = {},
