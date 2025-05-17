@@ -9,6 +9,7 @@ return {
 		-- refer to the configuration section below
 		bigfile = { enabled = true },
 		dashboard = { enabled = true },
+		explorer = { enabled = false },
 		gitbrowse = { enable = true },
 		indent = { animate = { enabled = false } },
 		input = { enabled = true },

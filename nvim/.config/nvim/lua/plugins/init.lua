@@ -1,16 +1,21 @@
 return {
 	-- add lua docs to the vim help pages
 	{ "nanotee/luv-vimdocs" },
+	-- winbar with path and symbols
 	{
 		"utilyre/barbecue.nvim",
 		name = "barbecue",
 		version = "*",
 		dependencies = {
 			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons", -- optional dependency
+			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
-			-- configurations go here
+			show_modified = true,
+			show_navic = false,
+			theme = {
+				normal = { bg = "#0d1021" },
+			},
 		},
 	},
 	{
@@ -66,10 +71,15 @@ return {
 			options = {
 				icons_enabled = true,
 				theme = "nightfox",
-				component_separators = "|",
+				component_separators = "",
 				section_separators = "",
 			},
-			sections = { lualine_a = { "%f" } },
+			sections = {
+				lualine_a = { "lsp_status" },
+				lualine_c = {},
+				lualine_x = { "encoding", "fileformat" },
+				lualine_y = {},
+			},
 		},
 	},
 	{
