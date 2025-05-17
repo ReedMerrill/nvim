@@ -99,7 +99,8 @@ return {
 		opts = {
 			options = {
 				icons_enabled = true,
-				theme = "auto",
+				globalstatus = true,
+				theme = "kanagawa",
 				component_separators = "",
 				section_separators = "",
 			},
@@ -109,6 +110,15 @@ return {
 				lualine_x = { "encoding", "fileformat" },
 				lualine_y = {},
 			},
+			config = function()
+				local kanagawa = require("lualine.themes.kanagawa")
+				-- Override inactive sections to match active ones
+				kanagawa.inactive = {
+					a = kanagawa.normal.a,
+					b = kanagawa.normal.b,
+					c = kanagawa.normal.c,
+				}
+			end,
 		},
 	},
 	{
