@@ -19,7 +19,14 @@ return {
 			},
 		},
 	},
-	-- lazy.nvim
+	{
+		"miversen33/sunglasses.nvim",
+		opts = {
+			filter_type = "SHADE",
+			filter_percent = 0.2,
+			enabled = true,
+		},
+	},
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -96,30 +103,24 @@ return {
 	{
 		-- Set lualine as statusline
 		"nvim-lualine/lualine.nvim",
-		opts = {
-			options = {
-				icons_enabled = true,
-				globalstatus = true,
-				theme = "kanagawa",
-				component_separators = "",
-				section_separators = "",
-			},
-			sections = {
-				lualine_a = {},
-				lualine_c = {},
-				lualine_x = { "encoding", "fileformat" },
-				lualine_y = {},
-			},
-			config = function()
-				local kanagawa = require("lualine.themes.kanagawa")
-				-- Override inactive sections to match active ones
-				kanagawa.inactive = {
-					a = kanagawa.normal.a,
-					b = kanagawa.normal.b,
-					c = kanagawa.normal.c,
-				}
-			end,
-		},
+		config = function()
+			local kanagawa_paper = require("lualine.themes.kanagawa-paper-ink")
+			require("lualine").setup({
+				options = {
+					icons_enabled = true,
+					globalstatus = true,
+					theme = kanagawa_paper,
+					component_separators = "",
+					section_separators = "",
+				},
+				sections = {
+					lualine_a = {},
+					lualine_c = {},
+					lualine_x = { "encoding", "fileformat" },
+					lualine_y = {},
+				},
+			})
+		end,
 	},
 	{
 		"stevearc/aerial.nvim",
