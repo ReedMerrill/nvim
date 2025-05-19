@@ -2,6 +2,62 @@ return {
 	{ dir = "/Users/reed/code/reactive_splits.nvim" },
 	-- add lua docs to the vim help pages
 	{ "nanotee/luv-vimdocs" },
+	-- winbar with path and symbols
+	{
+		"utilyre/barbecue.nvim",
+		name = "barbecue",
+		version = "*",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons",
+		},
+		opts = {
+			show_modified = true,
+			show_navic = false,
+			theme = {
+				normal = { bg = "#1f1f28", fg = "#DCD7BA" },
+				basename = { bold = false },
+			},
+		},
+	},
+	{
+		"miversen33/sunglasses.nvim",
+		opts = {
+			filter_type = "SHADE",
+			filter_percent = 0.2,
+			enabled = true,
+		},
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+		opts = {
+			lsp = {
+				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+				},
+			},
+			-- you can enable a preset for easier configuration
+			presets = {
+				bottom_search = false, -- use a classic bottom cmdline for search
+				command_palette = true, -- position the cmdline and popupmenu together
+				long_message_to_split = true, -- long messages will be sent to a split
+				inc_rename = false, -- enables an input dialog for inc-rename.nvim
+				lsp_doc_border = false, -- add a border to hover docs and signature help
+			},
+		},
+	},
 	{
 		"geg2102/nvim-python-repl",
 		dependencies = "nvim-treesitter",
@@ -23,18 +79,12 @@ return {
 			})
 		end,
 	},
-	-- toggleterm (for job running)
-	{
-		{ "akinsho/toggleterm.nvim", version = "*", config = true },
-	},
-	-- telescope (for LSP actions, not the picker)
+	-- telescope (for LSP related pickers)
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	-- theme
-	{ "EdenEast/nightfox.nvim", opts = {} },
 	-- Debugger
 	{ "mfussenegger/nvim-dap" },
 	-- DAP UI
@@ -44,14 +94,6 @@ return {
 	},
 	{ "theHamsta/nvim-dap-virtual-text" },
 	{ "mfussenegger/nvim-dap-python", dependencies = { "mfussenegger/nvim-dap" } },
-	-- keymap hints
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-		end,
-	},
 	{ "HiPhish/rainbow-delimiters.nvim" },
 	{
 		"alexghergh/nvim-tmux-navigation",
@@ -62,15 +104,24 @@ return {
 	{
 		-- Set lualine as statusline
 		"nvim-lualine/lualine.nvim",
-		opts = {
-			options = {
-				icons_enabled = true,
-				theme = "nightfox",
-				component_separators = "|",
-				section_separators = "",
-			},
-			sections = { lualine_a = { "%f" } },
-		},
+		config = function()
+			local kanagawa_paper = require("lualine.themes.kanagawa-paper-ink")
+			require("lualine").setup({
+				options = {
+					icons_enabled = true,
+					globalstatus = true,
+					theme = kanagawa_paper,
+					component_separators = "",
+					section_separators = "",
+				},
+				sections = {
+					lualine_a = {},
+					lualine_c = {},
+					lualine_x = { "encoding", "fileformat" },
+					lualine_y = {},
+				},
+			})
+		end,
 	},
 	{
 		"stevearc/aerial.nvim",
@@ -126,99 +177,6 @@ return {
 		config = function()
 			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 		end,
-	},
-	{
-		"folke/snacks.nvim",
-		priority = 1000,
-		lazy = false,
-		---@type snacks.Config
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-			bigfile = { enabled = true },
-			dashboard = { enabled = true },
-			gitbrowse = { enable = true },
-			indent = { animate = { enabled = false } },
-			input = { enabled = true },
-			lazygit = { enabled = true },
-			notifier = { height = { min = 1, max = 0.6 }, width = { min = 1, max = 0.8 } },
-			quickfile = { enabled = true },
-			rename = { enabled = true },
-			scope = { enabled = true },
-			scroll = { enabled = false },
-			statuscolumn = { enabled = true },
-			terminal = { enabled = true },
-			words = { enabled = true },
-			zen = { ---@class snacks.zen.Config
-				-- You can add any `Snacks.toggle` id here.
-				-- Toggle state is restored when the window is closed.
-				-- Toggle config options are NOT merged.
-				---@type table<string, boolean>
-				toggles = {
-					dim = false,
-					git_signs = true,
-					mini_diff_signs = true,
-					-- diagnostics = false,
-					-- inlay_hints = false,
-				},
-				show = {
-					statusline = false, -- can only be shown when using the global statusline
-					tabline = false,
-				},
-				---@type snacks.win.Config
-				win = { style = "zen" },
-				--- Callback when the window is opened.
-				---@param win snacks.win
-				on_open = function(win) end,
-				--- Callback when the window is closed.
-				---@param win snacks.win
-				on_close = function(win) end,
-				--- Options for the `Snacks.zen.zoom()`
-				---@type snacks.zen.Config
-				zoom = {
-					toggles = {},
-					show = { statusline = true, tabline = true },
-					win = {
-						backdrop = false,
-						width = 120,
-					},
-				},
-			},
-		},
-		keys = {
-			-- lazygit
-			{
-				"<leader>lg",
-				function()
-					Snacks.lazygit()
-				end,
-				desc = "Toggle lazygit",
-			},
-			-- scratch buffer
-			{
-				"<leader>.",
-				function()
-					Snacks.scratch()
-				end,
-				desc = "Toggle scratch buffer",
-			},
-			{
-				"<leader>z",
-				function()
-					Snacks.zen()
-				end,
-				desc = "Toggle zen mode",
-			},
-			{
-				"<leader>gB",
-				function()
-					Snacks.gitbrowse()
-				end,
-				desc = "Git Browse",
-				mode = { "n", "v" },
-			},
-		},
 	},
 	-- Tree-sitter auto HTML tags
 	{
