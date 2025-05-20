@@ -20,9 +20,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	command = "TSBufEnable highlight",
 })
 
-vim.cmd([[
-  autocmd TermOpen * setlocal nospell
-]])
+vim.api.nvim_create_autocmd("TermOpen", {
+	command = "setlocal nospell",
+})
 
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
