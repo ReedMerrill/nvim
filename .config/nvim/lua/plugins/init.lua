@@ -117,8 +117,21 @@ return {
 				sections = {
 					lualine_a = {},
 					lualine_c = {},
-					lualine_x = { "encoding", "fileformat" },
-					lualine_y = {},
+					lualine_x = {
+						{
+							function()
+								local util = require("util")
+								if util.is_tmux then
+									local sess = util.tmux_session()
+									local win = util.tmux_window()
+									return (" %s: %s"):format(sess or "-", win or "-")
+								end
+								return ""
+							end,
+						},
+					},
+					lualine_y = { "encoding", "fileformat" },
+					lualine_z = { "location" },
 				},
 			})
 		end,
