@@ -23,53 +23,7 @@ require("lazy").setup("plugins")
 -- load sets and remaps
 require("keymaps")
 require("opts")
-
--- set color column to be blank whenever wrap is set
-vim.api.nvim_create_autocmd("BufEnter", {
-	-- call on every file type
-	pattern = "*",
-	callback = function()
-		local wrapped_fts = { "markdown", "quarto", "txt" }
-		local ft = vim.api.nvim_get_option_value("filetype", {})
-		for _, value in pairs(wrapped_fts) do
-			-- check if ft is in wrapped_fts
-			if value == ft then
-				-- set colorcolumn to be blank
-				vim.opt.colorcolumn = ""
-			end
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*",
-	command = "TSBufEnable highlight",
-})
-
-vim.cmd([[
-  autocmd TermOpen * setlocal nospell
-]])
-
--- Highlight when yanking text
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
--- enter insert mode when focusing a terminal
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	desc = "Set terminal to insert mode",
-	group = termgroup,
-	pattern = "term://*",
-	callback = function()
-		vim.schedule(function()
-			vim.cmd(":startinsert")
-		end)
-	end,
-})
+require("autocmds")
 
 -- for dev --------------------
 
