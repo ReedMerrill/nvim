@@ -1,6 +1,3 @@
--- set leader to " "
-vim.g.mapleader = " "
-
 -- conceallevel (for live formatting in markdown etc...)
 vim.opt.conceallevel = 2
 

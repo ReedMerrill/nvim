@@ -21,8 +21,8 @@ vim.g.maplocalleader = " "
 require("lazy").setup("plugins")
 
 -- load sets and remaps
-require("custom.keymaps")
-require("custom.opts")
+require("keymaps")
+require("opts")
 
 -- set color column to be blank whenever wrap is set
 vim.api.nvim_create_autocmd("BufEnter", {

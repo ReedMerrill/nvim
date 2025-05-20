@@ -1,13 +1,23 @@
 -- utils
 
 -- save and quit with leader
-vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>wq", ":wq<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>wa", ":wall<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>w", function()
+	vim.cmd("w")
+end, { noremap = true })
+vim.keymap.set("n", "<leader>q", function()
+	vim.cmd("q")
+end, { noremap = true })
+vim.keymap.set("n", "<leader>wq", function()
+	vim.cmd("wq")
+end, { noremap = true })
+vim.keymap.set("n", "<leader>wa", function()
+	vim.cmd("wall")
+end, { noremap = true })
 
 -- reload the buffer from last save
-vim.keymap.set("n", "<leader>e", ":e!", { desc = "Reload buffer" })
+vim.keymap.set("n", "<leader>e", function()
+	vim.cmd("e!")
+end, { desc = "Reload buffer" })
 
 -- code navigation
 
