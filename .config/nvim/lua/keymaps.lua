@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader>e", function()
 	vim.cmd("e!")
 end, { desc = "Reload buffer" })
 
--- code navigation
+-- buffer navigation
 
 -- keep cursor in the same spot for "J"
 vim.keymap.set("n", "J", "mzJ`z")
