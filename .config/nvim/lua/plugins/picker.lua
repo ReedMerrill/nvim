@@ -85,7 +85,7 @@ return {
 			desc = "Git Log Line",
 		},
 		{
-			"<leader>gs",
+			"<leader>gss",
 			function()
 				Snacks.picker.git_status()
 			end,

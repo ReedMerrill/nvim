@@ -31,3 +31,4 @@ end
 
 -- Create a Neovim command to call the function
 vim.api.nvim_create_user_command("RunRTestAll", run_r_testthat, {})
+vim.keymap.set("n", "<leader>rt", ":RunRTestAll<cr>", { desc = "Run all R Tests" })
