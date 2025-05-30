@@ -251,13 +251,13 @@ return {
 	-- more "around" and "inside" actions
 	{ "echasnovski/mini.ai", opts = {}, version = false },
 	-- Launch a live server
-	{
-		"barrett-ruth/live-server.nvim",
-		build = "pnpm add -g live-server",
-		cmd = { "LiveServerStart", "LiveServerStart" },
-		config = true,
-		keys = { { "<leader>L", "<cmd>LiveServerToggle<cr>" } },
-	},
+	-- {
+	-- 	"barrett-ruth/live-server.nvim",
+	-- 	build = "pnpm add -g live-server",
+	-- 	cmd = { "LiveServerStart", "LiveServerStart" },
+	-- 	config = true,
+	-- 	keys = { { "<leader>L", "<cmd>LiveServerToggle<cr>" } },
+	-- },
 	-- AI code suggestions
 	{
 		"huggingface/llm.nvim",
