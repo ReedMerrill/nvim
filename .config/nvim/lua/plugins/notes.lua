@@ -10,14 +10,14 @@ return {
 		ft = "markdown", -- Lazy loads for Markdown files matching patterns in 'files'
 		opts = {
 			files = { "*.todo.md" },
-			-- keys = {
-			-- 	["<leader>At"] = "toggle",
-			-- 	["<leader>Ac"] = "check",
-			-- 	["<leader>Au"] = "uncheck",
-			-- 	["<leader>A"] = "create",
-			-- 	["<leader>Ar"] = "remove_all_metadata",
-			-- 	["<leader>Aa"] = "archive",
-			-- },
+			keys = {
+				["<leader>tt"] = "toggle",
+				["<leader>tc"] = "check",
+				["<leader>tu"] = "uncheck",
+				["<leader>t"] = "create",
+				["<leader>tr"] = "remove_all_metadata",
+				["<leader>ta"] = "archive",
+			},
 			-- metadata = {
 			-- 	done = {
 			-- 		aliases = { "completed", "finished" },
