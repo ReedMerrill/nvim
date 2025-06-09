@@ -15,17 +15,32 @@ vim.api.nvim_set_keymap("i", "<C-l>", "%in%", { noremap = true })
 
 -- R dev functions and keymaps
 
--- Function to run testthat::test_file() on current file in terminal split
+local testthat_term_buf = nil
+local testthat_term_job_id = nil
+
 local function run_r_testthat()
-	-- Construct the R command
-	local r_command = 'R -q -e "devtools::test()"'
+	-- If terminal buffer doesn't exist or is invalid, create it
+	if not (testthat_term_buf and vim.api.nvim_buf_is_valid(testthat_term_buf)) then
+		-- Open terminal in a vertical split
+		vim.cmd("botright vsplit")
+		vim.cmd("vertical resize 80") -- Adjust width as needed
+		vim.cmd("terminal R -q")
 
-	-- Open a terminal split at the bottom
-	vim.cmd("botright split")
-	vim.cmd("resize 15") -- Adjust the height of the terminal split
-	vim.cmd("terminal " .. r_command)
+		testthat_term_buf = vim.api.nvim_get_current_buf()
+		testthat_term_job_id = vim.b.terminal_job_id
+	else
+		-- Reopen the terminal buffer
+		vim.cmd("botright vsplit")
+		vim.cmd("vertical resize 80")
+		vim.api.nvim_set_current_buf(testthat_term_buf)
+	end
 
-	-- Enter Terminal mode
+	-- Send the command to the running R session
+	if testthat_term_job_id then
+		vim.fn.chansend(testthat_term_job_id, "testthat::test_local()\n")
+	end
+
+	-- Enter terminal mode
 	vim.cmd("startinsert")
 end
 

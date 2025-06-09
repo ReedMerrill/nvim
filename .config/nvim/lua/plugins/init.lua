@@ -1,26 +1,32 @@
 return {
 	{ dir = "/Users/reed/code/reactive_splits.nvim", lazy = false },
 	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
+	{
 		"Shatur/neovim-session-manager",
 		config = function()
 			local Path = require("plenary.path")
 			local config = require("session_manager.config")
 			require("session_manager").setup({
-				sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"), -- The directory where the session files will be saved.
-				session_filename_to_dir = session_filename_to_dir, -- Function that replaces symbols into separators and colons to transform filename into a session directory.
-				dir_to_session_filename = dir_to_session_filename, -- Function that replaces separators and colons into special symbols to transform session directory into a filename. Should use `vim.uv.cwd()` if the passed `dir` is `nil`.
-				autoload_mode = config.AutoloadMode.LastSession, -- Define what to do when Neovim is started without arguments. See "Autoload mode" section below.
-				autosave_last_session = false, -- Automatically save last session on exit and on session switch.
-				autosave_ignore_not_normal = true, -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
-				autosave_ignore_dirs = {}, -- A list of directories where the session will not be autosaved.
-				autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
+				sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"),
+				session_filename_to_dir = session_filename_to_dir,
+				dir_to_session_filename = dir_to_session_filename,
+				autoload_mode = config.AutoloadMode.LastSession,
+				autosave_last_session = false,
+				autosave_ignore_not_normal = true,
+				autosave_ignore_dirs = {},
+				autosave_ignore_filetypes = {
 					"gitcommit",
 					"gitrebase",
 				},
-				autosave_ignore_buftypes = {}, -- All buffers of these buffer types will be closed before the session is saved.
-				autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
-				max_path_length = 80, -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
-				load_include_current = true, -- The currently loaded session appears in the load_session UI.
+				autosave_ignore_buftypes = {},
+				autosave_only_in_session = false,
+				max_path_length = 80,
+				load_include_current = true,
 			})
 		end,
 	},
@@ -258,54 +264,6 @@ return {
 	-- 	config = true,
 	-- 	keys = { { "<leader>L", "<cmd>LiveServerToggle<cr>" } },
 	-- },
-	-- AI code suggestions
-	{
-		"huggingface/llm.nvim",
-		opts = {
-			api_token = nil, -- cf Install paragraph
-			model = "bigcode/starcoder2-15b", -- the model ID, behavior depends on backend
-			backend = "huggingface", -- backend ID, "huggingface" | "ollama" | "openai" | "tgi"
-			url = nil, -- the http url of the backend
-			tokens_to_clear = { "<|endoftext|>" }, -- tokens to remove from the model's output
-			-- parameters that are added to the request body, values are arbitrary, you can set any field:value pair here it will be passed as is to the backend
-			request_body = {
-				parameters = {
-					max_new_tokens = 60,
-					temperature = 0.2,
-					top_p = 0.95,
-				},
-			},
-			-- set this if the model supports fill in the middle
-			-- fim = {
-			-- 	enabled = true,
-			-- 	prefix = "<fim_prefix>",
-			-- 	middle = "<fim_middle>",
-			-- 	suffix = "<fim_suffix>",
-			-- },
-			debounce_ms = 150,
-			accept_keymap = "<Tab>",
-			dismiss_keymap = "<S-Tab>",
-			tls_skip_verify_insecure = false,
-			-- llm-ls configuration, cf llm-ls section
-			lsp = {
-				bin_path = nil,
-				host = nil,
-				port = nil,
-				cmd_env = nil, -- or { LLM_LOG_LEVEL = "DEBUG" } to set the log level of llm-ls
-				version = "0.5.3",
-			},
-			tokenizer = nil, -- cf Tokenizer paragraph
-			context_window = 1024, -- max number of tokens for the context window
-			enable_suggestions_on_startup = true,
-			enable_suggestions_on_files = "*", -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
-			disable_url_path_completion = false, -- cf Backend
-		},
-		keys = {
-			{ mode = "n", "<leader>l", "<cmd>LLMToggleAutoSuggest<cr>", desc = "toggle LMM auto suggestions" },
-			-- BUG:: might not be doing anything
-			{ mode = "n", "<M-s>", "<cmd>LLMSuggestion<cr>", desc = "Request LLM Suggestion" },
-		},
-	},
 	{
 		"hat0uma/csvview.nvim",
 		---@module "csvview"

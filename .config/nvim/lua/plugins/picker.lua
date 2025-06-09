@@ -6,13 +6,6 @@ return {
 	keys = {
 		-- Top Pickers & Explorer
 		{
-			"<leader>fj",
-			function()
-				Snacks.picker.smart()
-			end,
-			desc = "Smart Find Files",
-		},
-		{
 			"<leader>,",
 			function()
 				Snacks.picker.buffers()
@@ -42,7 +35,7 @@ return {
 			desc = "Buffers",
 		},
 		{
-			"<leader>f",
+			"<leader>fj",
 			function()
 				Snacks.picker.files()
 			end,
@@ -247,13 +240,6 @@ return {
 				Snacks.picker.resume()
 			end,
 			desc = "Resume",
-		},
-		{
-			"<leader>uC",
-			function()
-				Snacks.picker.colorschemes()
-			end,
-			desc = "Colorschemes",
 		},
 	},
 }
