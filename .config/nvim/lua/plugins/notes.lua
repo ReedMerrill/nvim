@@ -9,32 +9,59 @@ return {
 		"bngarren/checkmate.nvim",
 		ft = "markdown", -- Lazy loads for Markdown files matching patterns in 'files'
 		opts = {
-			files = { "*.todo.md" },
+			files = { "todo.md", "*.todo.md" },
 			keys = {
 				["<leader>tt"] = "toggle",
 				["<leader>tc"] = "check",
 				["<leader>tu"] = "uncheck",
-				["<leader>t"] = "create",
+				["<leader>tn"] = "create",
 				["<leader>tr"] = "remove_all_metadata",
 				["<leader>ta"] = "archive",
 			},
-			-- metadata = {
-			-- 	done = {
-			-- 		aliases = { "completed", "finished" },
-			-- 		style = { fg = "#96de7a" },
-			-- 		get_value = function()
-			-- 			return tostring(os.date("%m/%d/%y %H:%M"))
-			-- 		end,
-			-- 		key = "<leader>d",
-			-- 		on_add = function(todo_item)
-			-- 			require("checkmate").set_todo_item(todo_item, "checked")
-			-- 		end,
-			-- 		on_remove = function(todo_item)
-			-- 			require("checkmate").set_todo_item(todo_item, "unchecked")
-			-- 		end,
-			-- 		sort_order = 10,
-			-- 	},
-			-- },
+			default_list_marker = "-",
+			todo_markers = {
+				unchecked = "[ ]", -- WARN: multi-character markers are officially supported
+				checked = "✔",
+			},
+			metadata = {
+				done = {
+					aliases = { "completed", "finished" },
+					style = { fg = "#96de7a" },
+					get_value = function()
+						return tostring(os.date("%m/%d/%y %H:%M"))
+					end,
+					key = "<leader>td",
+					on_add = function(todo_item)
+						require("checkmate").set_todo_item(todo_item, "checked")
+					end,
+					on_remove = function(todo_item)
+						require("checkmate").set_todo_item(todo_item, "unchecked")
+					end,
+					sort_order = 10,
+				},
+				priority = {
+					-- Dynamic styling based on the tag's current value
+					style = function(value)
+						local value = value:lower()
+						if value == "high" then
+							return { fg = "#ff5555", bold = true }
+						elseif value == "medium" then
+							return { fg = "#ffb86c" }
+						elseif value == "low" then
+							return { fg = "#8be9fd" }
+						else -- fallback
+							return { fg = "#8be9fd" }
+						end
+					end,
+					get_value = function()
+						return "medium"
+					end, -- Default value
+					key = "<leader>tp",
+					sort_order = 10,
+					jump_to_on_insert = "value",
+					select_on_insert = true,
+				},
+			},
 		},
 		archive = {
 			heading = {
@@ -46,7 +73,8 @@ return {
 	},
 	-- obsidian
 	{
-		"epwalsh/obsidian.nvim",
+		-- "epwalsh/obsidian.nvim",
+		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		ui = {
 			enable = true,
