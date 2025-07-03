@@ -6,6 +6,8 @@ require("conform").setup({
 		javascript = { "prettier" },
 		html = { "prettier" },
 		markdown = { "prettier" },
+		json = { "prettier" },
+		sql = { "sqruff" },
 	},
 })
 
