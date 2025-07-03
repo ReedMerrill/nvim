@@ -1,6 +1,15 @@
 return {
 	{ dir = "/Users/reed/code/reactive_splits.nvim", lazy = false },
 	{
+		"echasnovski/mini.diff", -- Inline and better diff over the default
+		config = function()
+			local diff = require("mini.diff")
+			diff.setup({
+				source = diff.gen_source.none(), -- Disabled by default
+			})
+		end,
+	},
+	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()

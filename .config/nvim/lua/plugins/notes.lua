@@ -2,7 +2,6 @@
 local cmb = "/Users/reed/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB"
 local main = "/Users/reed/Dropbox (Personal)/obsidian-vaults/main"
 
--- this config is meant to load different autocmds and workspaces depending on if its on my work computer (MacOS) or personal (Linux)
 return {
 	-- to do plugin with metadata, archiving, group check-offs
 	{
@@ -19,8 +18,9 @@ return {
 				["<leader>ta"] = "archive",
 			},
 			default_list_marker = "-",
+			enter_insert_after_new = false,
 			todo_markers = {
-				unchecked = "[ ]", -- WARN: multi-character markers are officially supported
+				unchecked = "[ ]", -- WARN: multi-character markers are not supported, but they work ATM
 				checked = "✔",
 			},
 			metadata = {
@@ -72,6 +72,7 @@ return {
 		},
 	},
 	-- obsidian
+	-- this config is meant to load different autocmds and workspaces depending on if its on my work computer (MacOS) or personal (Linux)
 	{
 		-- "epwalsh/obsidian.nvim",
 		"obsidian-nvim/obsidian.nvim",
