@@ -26,6 +26,7 @@ end, { noremap = true })
 -- reload the buffer from last save
 vim.keymap.set("n", "<leader>e", function()
 	vim.cmd("e!")
+	print("Buffer reloaded")
 end, { desc = "Reload buffer" })
 
 -- buffer navigation

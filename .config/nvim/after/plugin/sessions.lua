@@ -1,0 +1,5 @@
+vim.keymap.set("n", "<leader>so", vim.cmd("SessionManager load_session"), { desc = "Open session picker" })
+vim.keymap.set("n", "<leader>ss", function()
+	vim.cmd("SessionSave")
+	print("Current session saved")
+end, { desc = "Save current session" })
