@@ -3,6 +3,7 @@
 -- save and quit with leader
 vim.keymap.set("n", "<leader>w", function()
 	vim.cmd("w")
+	print("Buffer written")
 end, { noremap = true })
 vim.keymap.set("n", "<leader>q", function()
 	vim.cmd("q")
@@ -10,13 +11,18 @@ end, { noremap = true })
 vim.keymap.set("n", "<leader>wq", function()
 	vim.cmd("wq")
 end, { noremap = true })
-vim.keymap.set("n", "<leader>wa", function()
+vim.keymap.set("n", "<leader>ww", function()
 	vim.cmd("wall")
+	print("All buffers written")
+end, { noremap = true })
+vim.keymap.set("n", "<leader>qq", function()
+	vim.cmd("qall")
 end, { noremap = true })
 
 -- reload the buffer from last save
 vim.keymap.set("n", "<leader>e", function()
 	vim.cmd("e!")
+	print("Buffer reloaded")
 end, { desc = "Reload buffer" })
 
 -- code navigation
