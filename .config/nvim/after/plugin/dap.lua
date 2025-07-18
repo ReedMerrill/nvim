@@ -8,12 +8,18 @@ vim.fn.sign_define(
 )
 
 -- Debugger
-vim.api.nvim_set_keymap("n", "<leader>dt", "<Cmd>lua require('dapui').toggle()<CR>", { noremap = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>dt",
+	"<Cmd>lua require('dapui').toggle()<CR>",
+	{ noremap = true, desc = "Toggle DAP UI" }
+)
 vim.api.nvim_set_keymap("n", "<leader>bp", ":DapToggleBreakpoint<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>dc", ":DapContinue<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>dq", ":DapTerminate<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>i", ":DapStepInto<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>o", ":DapStepOver<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>oo", ":DapStepOut<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<Right>", ":DapStepInto<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<Down>", ":DapStepOver<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<Left>", ":DapStepOut<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<Up>", ":DapRestartFrame<CR>", { noremap = true })
 -- reset dapui in case I closed some windows I want back, or zoomed in, etc...
 vim.api.nvim_set_keymap("n", "<leader>dr", ":lua require('dapui').open({reset = true})<CR>", { noremap = true })
