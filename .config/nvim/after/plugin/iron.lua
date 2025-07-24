@@ -1,2 +1,2 @@
-vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
-vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
+vim.keymap.set("n", "<leader>rf", "<cmd>IronFocus<cr>")
+vim.keymap.set("n", "<leader>rh", "<cmd>IronHide<cr>")
