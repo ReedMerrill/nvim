@@ -93,16 +93,14 @@ return {
 			})
 		end,
 	},
-	-- job runner
 	{
 		"stevearc/overseer.nvim",
-		opts = {},
-		config = function()
-			require("overseer").setup({
-				templates = { "user.RShiny" },
-			})
-		end,
+		opts = {
+			templates = { "builtin", "user.shiny_run" },
+		},
+		dependencies = { "yyk/find-git-root.nvim", "akinsho/toggleterm.nvim" },
 	},
+	{ "akinsho/toggleterm.nvim", version = "*", config = true },
 	-- telescope (for LSP related pickers)
 	{
 		"nvim-telescope/telescope.nvim",
