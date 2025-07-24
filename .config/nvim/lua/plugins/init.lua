@@ -96,7 +96,7 @@ return {
 	{
 		"stevearc/overseer.nvim",
 		opts = {
-			templates = { "builtin", "user.shiny_run" },
+			templates = { "builtin", "user.shiny_run", "user.r_tests_run" },
 		},
 		dependencies = { "yyk/find-git-root.nvim", "akinsho/toggleterm.nvim" },
 	},
