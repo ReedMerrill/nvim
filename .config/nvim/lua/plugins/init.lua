@@ -1,5 +1,12 @@
 return {
-	{ dir = "/Users/reed/code/reactive_splits.nvim", lazy = false },
+	{
+		"A7Lavinraj/fyler.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = { -- check the default options in the README.md
+			icon_provider = "nvim-web-devicons",
+			default_explorer = true,
+		},
+	},
 	{
 		"echasnovski/mini.diff", -- Inline and better diff over the default
 		config = function()
