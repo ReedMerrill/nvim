@@ -243,3 +243,6 @@ winbar
 Neighbourhood
 pred
 parametrize
+S3
+boolean
+behaviours
