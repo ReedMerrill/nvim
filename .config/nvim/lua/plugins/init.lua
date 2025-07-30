@@ -1,15 +1,19 @@
 return {
 	{
-		dir = "/Users/reed/code/fyler.nvim",
+		name = "fyler.nvim",
+		dir = vim.fn.expand("~") .. "/code/fyler.nvim",
+		dev = true,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			icon_provider = "nvim-web-devicons",
 			default_explorer = true,
 			views = {
 				explorer = {
-					width = 0.5,
-					height = 0.25,
-					kind = "float",
+					win = {
+						width = 0.5,
+						height = 0.25,
+						kind = "float",
+					},
 				},
 			},
 		},
