@@ -1,5 +1,5 @@
 vim.opt.linebreak = true
-vim.opt.wrap = true
+-- vim.opt.wrap = true
 
 vim.keymap.set("n", "<leader>at", "<cmd>AerialToggle!<CR>", { desc = "Toggle outline" })
 vim.keymap.set("n", "<leader>ty", function()
