@@ -8,20 +8,91 @@ return {
 		"bngarren/checkmate.nvim",
 		ft = "markdown", -- Lazy loads for Markdown files matching patterns in 'files'
 		opts = {
-			files = { "todo.md", "*.todo.md" },
+			files = { "*.md", "todo.md", "*.todo.md" },
 			keys = {
-				["<leader>tt"] = "toggle",
-				["<leader>tc"] = "check",
-				["<leader>tu"] = "uncheck",
-				["<leader>tn"] = "create",
-				["<leader>tr"] = "remove_all_metadata",
-				["<leader>ta"] = "archive",
+				["<leader>tt"] = {
+					rhs = "<cmd>Checkmate toggle<CR>",
+					desc = "Toggle todo item",
+					modes = { "n", "v" },
+				},
+				["<leader>tc"] = {
+					rhs = "<cmd>Checkmate check<CR>",
+					desc = "Set todo item as checked (done)",
+					modes = { "n", "v" },
+				},
+				["<leader>tu"] = {
+					rhs = "<cmd>Checkmate uncheck<CR>",
+					desc = "Set todo item as unchecked (not done)",
+					modes = { "n", "v" },
+				},
+				["<leader>tc="] = {
+					rhs = "<cmd>Checkmate cycle_next<CR>",
+					desc = "Cycle todo item(s) to the next state",
+					modes = { "n", "v" },
+				},
+				["<leader>tn"] = {
+					rhs = "<cmd>Checkmate create<CR>",
+					desc = "Create todo item",
+					modes = { "n", "v" },
+				},
+				["<leader>tr"] = {
+					rhs = "<cmd>Checkmate remove_all_metadata<CR>",
+					desc = "Remove all metadata from a todo item",
+					modes = { "n", "v" },
+				},
+				["<leader>ta"] = {
+					rhs = "<cmd>Checkmate archive<CR>",
+					desc = "Archive checked/completed todo items (move to bottom section)",
+					modes = { "n" },
+				},
+				["<leader>tv"] = {
+					rhs = "<cmd>Checkmate metadata select_value<CR>",
+					desc = "Update the value of a metadata tag under the cursor",
+					modes = { "n" },
+				},
+				["<leader>t]"] = {
+					rhs = "<cmd>Checkmate metadata jump_next<CR>",
+					desc = "Move cursor to next metadata tag",
+					modes = { "n" },
+				},
+				["<leader>t["] = {
+					rhs = "<cmd>Checkmate metadata jump_previous<CR>",
+					desc = "Move cursor to previous metadata tag",
+					modes = { "n" },
+				},
 			},
 			default_list_marker = "-",
 			enter_insert_after_new = false,
-			todo_markers = {
-				unchecked = "[ ]", -- WARN: multi-character markers are not supported, but they work ATM
-				checked = "✔",
+			todo_states = {
+				-- we don't need to set the `markdown` field for `unchecked` and `checked` as these can't be overriden
+				---@diagnostic disable-next-line: missing-fields
+				unchecked = {
+					marker = "□",
+					order = 1,
+				},
+				---@diagnostic disable-next-line: missing-fields
+				checked = {
+					marker = "✔",
+					order = 2,
+				},
+				in_progress = {
+					marker = "◐",
+					markdown = ".",
+					type = "incomplete",
+					order = 50,
+				},
+				cancelled = {
+					marker = "✗",
+					markdown = "c",
+					type = "complete",
+					order = 2,
+				},
+				on_hold = {
+					marker = "⏸",
+					markdown = "/",
+					type = "inactive",
+					order = 100,
+				},
 			},
 			metadata = {
 				done = {
@@ -40,9 +111,8 @@ return {
 					sort_order = 10,
 				},
 				priority = {
-					-- Dynamic styling based on the tag's current value
-					style = function(value)
-						local value = value:lower()
+					style = function(context)
+						local value = context.value:lower()
 						if value == "high" then
 							return { fg = "#ff5555", bold = true }
 						elseif value == "medium" then
@@ -54,9 +124,12 @@ return {
 						end
 					end,
 					get_value = function()
-						return "medium"
-					end, -- Default value
-					key = "<leader>tp",
+						return "medium" -- Default priority
+					end,
+					choices = function()
+						return { "low", "medium", "high" }
+					end,
+					key = "<leader>Tp",
 					sort_order = 10,
 					jump_to_on_insert = "value",
 					select_on_insert = true,
