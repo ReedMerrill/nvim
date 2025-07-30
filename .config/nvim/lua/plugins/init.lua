@@ -1,5 +1,10 @@
 return {
-	{ dir = "/Users/reed/code/reactive_splits.nvim", lazy = false },
+	{
+		"sindrets/diffview.nvim",
+		opts = {
+			default_args = { DiffviewOpen = { "--imply-local" } },
+		},
+	},
 	{
 		"echasnovski/mini.diff", -- Inline and better diff over the default
 		config = function()
