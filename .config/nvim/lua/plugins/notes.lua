@@ -149,22 +149,11 @@ return {
 	{
 		"obsidian-nvim/obsidian.nvim",
 		ui = {
-			enable = true,
-			checkboxes = {
-				[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-				["x"] = { char = "", hl_group = "ObsidianDone" },
-				[">"] = { char = "", hl_group = "ObsidianRightArrow" },
-				["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-				["!"] = { char = "", hl_group = "ObsidianImportant" },
-				-- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-				-- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
-			},
+			enable = false,
 		},
 		lazy = true,
-		-- for activating on all markdown files
 		ft = "markdown",
 		dependencies = {
-			-- Required.
 			"nvim-lua/plenary.nvim",
 		},
 		opts = {
@@ -192,9 +181,8 @@ return {
 				return title
 			end,
 			completion = {
-				-- Set to false to disable completion.
+				create_new = true,
 				nvim_cmp = true,
-				-- Trigger completion at 2 chars.
 				min_chars = 2,
 			},
 			mappings = {
@@ -205,14 +193,6 @@ return {
 					end,
 					opts = { noremap = false, expr = true, buffer = true },
 				},
-				-- Toggle check-boxes.
-				-- ["<leader>d"] = {
-				-- 	action = function()
-				-- 		require("obsidian").util.toggle_checkbox()
-				-- 		vim.cmd("normal j")
-				-- 	end,
-				-- 	opts = { buffer = true },
-				-- },
 			},
 		},
 	},
