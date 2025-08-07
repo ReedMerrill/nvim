@@ -23,3 +23,9 @@ vim.api.nvim_set_keymap("n", "<Left>", ":DapStepOut<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<Up>", ":DapRestartFrame<CR>", { noremap = true })
 -- reset dapui in case I closed some windows I want back, or zoomed in, etc...
 vim.api.nvim_set_keymap("n", "<leader>dr", ":lua require('dapui').open({reset = true})<CR>", { noremap = true })
+
+-- OSV: neovim runtime debugging
+vim.keymap.set("n", "<leader>dl", function()
+	require("osv").launch({ port = 8086 })
+	print("OSV launched")
+end, { noremap = true })

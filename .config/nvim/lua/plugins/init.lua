@@ -1,44 +1,10 @@
 return {
 	{
-		name = "fyler.nvim",
-		dir = vim.fn.expand("~") .. "/code/fyler.nvim",
-		dev = true,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			icon_provider = "nvim-web-devicons",
-			default_explorer = false,
-			views = {
-				explorer = {
-					win = {
-						width = 0.5,
-						height = 0.25,
-						kind = "float",
-					},
-				},
-			},
-		},
-	},
-	{
 		"sindrets/diffview.nvim",
 		opts = {
 			default_args = { DiffviewOpen = { "--imply-local" } },
 		},
 	},
-	-- {
-	-- 	"A7Lavinraj/fyler.nvim",
-	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- 	opts = { -- check the default options in the README.md
-	-- 		icon_provider = "nvim-web-devicons",
-	-- 		default_explorer = true,
-	-- 		views = {
-	-- 			explorer = {
-	-- 				width = 0.5,
-	-- 				height = 0.25,
-	-- 				kind = "float",
-	-- 			},
-	-- 		},
-	-- 	},
-	-- },
 	{
 		"echasnovski/mini.diff", -- Inline and better diff over the default
 		config = function()
