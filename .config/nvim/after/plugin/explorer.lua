@@ -1,1 +1,1 @@
-vim.keymap.set("n", "-", "<cmd>Fyler<CR>", { desc = "Enter file explorer" })
+vim.keymap.set("n", "-", "<cmd>Oil --float<CR>", { desc = "Enter file explorer" })
