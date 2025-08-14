@@ -17,7 +17,7 @@ return {
 		scope = { enabled = true },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
-		terminal = { enabled = true },
+		terminal = { enabled = false },
 		words = { enabled = true },
 		zen = { ---@class snacks.zen.Config
 			-- You can add any `Snacks.toggle` id here.
