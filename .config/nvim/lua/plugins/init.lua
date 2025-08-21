@@ -144,6 +144,8 @@ return {
 		lazy = false,
 		config = function()
 			local dap = require("dap")
+			local dap_python = require("dap-python")
+			dap_python.setup("python3")
 			dap.configurations.lua = {
 				{
 					type = "nlua",
