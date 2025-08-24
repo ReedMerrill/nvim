@@ -164,8 +164,8 @@ return {
 		"rcarriga/nvim-dap-ui",
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 	},
+	{ "HiPhish/debugpy.nvim" },
 	{ "theHamsta/nvim-dap-virtual-text" },
-	{ "mfussenegger/nvim-dap-python", dependencies = { "mfussenegger/nvim-dap" } },
 	{ "HiPhish/rainbow-delimiters.nvim" },
 	{
 		"alexghergh/nvim-tmux-navigation",
