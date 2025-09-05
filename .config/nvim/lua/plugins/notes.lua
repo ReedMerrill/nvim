@@ -173,7 +173,7 @@ return {
 			note_id_func = function(title)
 				if title ~= nil then
 					-- Transform title into a valid file name.
-					title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9]", ""):lower()
+					title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-_]", ""):lower()
 				else
 					-- If title is nil, return an error.
 					error("No file name argument provided.")
