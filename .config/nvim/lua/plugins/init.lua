@@ -6,7 +6,7 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini.diff", -- Inline and better diff over the default
+		"nvim-mini/mini.diff", -- Inline and better diff over the default
 		config = function()
 			local diff = require("mini.diff")
 			diff.setup({
@@ -289,7 +289,7 @@ return {
 		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
 	-- more "around" and "inside" actions
-	{ "echasnovski/mini.ai", opts = {}, version = false },
+	{ "nvim-mini/mini.ai", opts = {}, version = false },
 	-- Launch a live server
 	-- {
 	-- 	"barrett-ruth/live-server.nvim",
