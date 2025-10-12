@@ -159,12 +159,33 @@ return {
 		opts = {
 			workspaces = {
 				{
-					name = "CMB",
-					path = cmb,
-				},
-				{
-					name = "main",
-					path = main,
+					name = "obsidian",
+					---Finds the workspace root by traversing upward from the current file's directory.
+					---@param flag string The name of the file or directory that marks a workspace root.
+					---@return string workspace_path The path to the workspace root, or the current working directory if not found.
+					path = function()
+						local uv = vim.loop
+						local flag = "notes.flag"
+						local file_path = vim.api.nvim_buf_get_name(0)
+						if file_path == "" then
+							return uv.fs_realpath(uv.cwd())
+						end
+						local dir = uv.fs_realpath(vim.fn.fnamemodify(file_path, ":p:h"))
+						local home = uv.fs_realpath(vim.fn.expand("~"))
+						while dir and dir:sub(1, #home) == home do
+							local flag_path = dir .. "/" .. flag
+							local stat = uv.fs_stat(flag_path)
+							if stat then
+								return dir
+							end
+							local parent = vim.fn.fnamemodify(dir, ":h")
+							if parent == dir then
+								break
+							end
+							dir = parent
+						end
+						return uv.fs_realpath(uv.cwd())
+					end,
 				},
 			},
 			-- customize how note IDs are generated given an optional title.
