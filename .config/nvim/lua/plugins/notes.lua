@@ -145,7 +145,6 @@ return {
 		},
 	},
 	-- obsidian
-	-- this config is meant to load different autocmds and workspaces depending on if its on my work computer (MacOS) or personal (Linux)
 	{
 		"obsidian-nvim/obsidian.nvim",
 		ui = {
@@ -167,9 +166,6 @@ return {
 						local uv = vim.loop
 						local flag = "notes.flag"
 						local file_path = vim.api.nvim_buf_get_name(0)
-						if file_path == "" then
-							return uv.fs_realpath(uv.cwd())
-						end
 						local dir = uv.fs_realpath(vim.fn.fnamemodify(file_path, ":p:h"))
 						local home = uv.fs_realpath(vim.fn.expand("~"))
 						while dir and dir:sub(1, #home) == home do
@@ -184,7 +180,6 @@ return {
 							end
 							dir = parent
 						end
-						return uv.fs_realpath(uv.cwd())
 					end,
 				},
 			},
