@@ -142,7 +142,7 @@ return {
 				command_palette = true, -- position the cmdline and popupmenu together
 				long_message_to_split = true, -- long messages will be sent to a split
 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = false, -- add a border to hover docs and signature help
+				lsp_doc_border = true, -- add a border to hover docs and signature help
 			},
 		},
 	},
@@ -223,7 +223,7 @@ return {
 		end,
 	},
 	{
-		-- Set lualine as statusline
+		-- Use lualine for the status line
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			local kanagawa_paper = require("lualine.themes.kanagawa-paper-ink")
@@ -257,6 +257,7 @@ return {
 			})
 		end,
 	},
+	-- outlines for code and markdown
 	{
 		"stevearc/aerial.nvim",
 		-- optional
@@ -329,7 +330,6 @@ return {
 	"ThePrimeagen/harpoon",
 	-- neovim dev stuff for lua
 	"folke/neodev.nvim",
-	-- list of warnings, errors, and telescope outputs
 	-- icons
 	"nvim-tree/nvim-web-devicons",
 	-- better text objects
@@ -369,12 +369,10 @@ return {
 		},
 		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
 	},
-	{
-		"altermo/ultimate-autopair.nvim",
-		event = { "InsertEnter", "CmdlineEnter" },
-		branch = "v0.6", --recommended as each new version will have breaking changes
-		opts = {},
-	},
+	-- {
+	-- 	"altermo/ultimate-autopair.nvim",
+	-- 	event = { "InsertEnter", "CmdlineEnter" },
+	-- 	branch = "v0.6", --recommended as each new version will have breaking changes
+	-- 	opts = {},
+	-- },
 }
--- TODO:
--- [ ] add blink.cmp
