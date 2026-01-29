@@ -1,13 +1,14 @@
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		python = { "black" },
+		python = { "ruff" },
 		r = { "air" },
 		javascript = { "prettier" },
 		html = { "prettier" },
 		markdown = { "prettier" },
 		json = { "prettier" },
 		sql = { "sqruff" },
+		quarto = { "injected" },
 	},
 })
 
@@ -20,6 +21,25 @@ require("conform").setup({
 		return { timeout_ms = 1000, lsp_format = "fallback" }
 	end,
 })
+
+require("conform").formatters.injected = {
+	-- Set the options field
+	options = {
+		-- Set to true to ignore errors
+		ignore_errors = false,
+		-- Map of treesitter language to file extension
+		-- A temporary file name with this extension will be generated during formatting
+		-- because some formatters care about the filename.
+		lang_to_ext = {
+			bash = "sh",
+			javascript = "js",
+			markdown = "md",
+			python = "py",
+			r = "r",
+			typescript = "ts",
+		},
+	},
+}
 
 -- commands to turn the formatter on and off
 vim.api.nvim_create_user_command("FormatDisable", function(args)

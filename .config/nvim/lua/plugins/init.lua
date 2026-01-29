@@ -1,4 +1,33 @@
 return {
+	-- plugins/quarto.lua
+	{
+		"quarto-dev/quarto-nvim",
+		dependencies = {
+			"jmbuhr/otter.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			debug = false,
+			closePreviewOnExit = true,
+			lspFeatures = {
+				enabled = true,
+				chunks = "curly",
+				languages = { "r" },
+				diagnostics = {
+					enabled = false,
+					triggers = { "BufWritePost" },
+				},
+				completion = {
+					enabled = true,
+				},
+			},
+			codeRunner = {
+				enabled = true,
+				default_method = "iron",
+				never_run = { "yaml" },
+			},
+		},
+	},
 	{
 		"sindrets/diffview.nvim",
 		opts = {
@@ -144,8 +173,6 @@ return {
 		lazy = false,
 		config = function()
 			local dap = require("dap")
-			local dap_python = require("dap-python")
-			dap_python.setup("python3")
 			dap.configurations.lua = {
 				{
 					type = "nlua",
