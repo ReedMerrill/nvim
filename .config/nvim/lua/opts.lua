@@ -36,6 +36,9 @@ vim.opt.smartcase = true
 -- get nice colors
 vim.opt.termguicolors = true
 
+-- limit terminal scrollback to avoid lag on old terminal sessions
+vim.opt.scrollback = 2000
+
 -- 8 line padding during scrolling
 vim.opt.scrolloff = 20
 

@@ -1,5 +1,4 @@
 return {
-	-- plugins/quarto.lua
 	{
 		"quarto-dev/quarto-nvim",
 		dependencies = {
