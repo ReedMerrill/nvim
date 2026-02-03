@@ -95,18 +95,28 @@ return {
 				},
 			},
 			metadata = {
+				started = {
+					aliases = { "init" },
+					style = { fg = "#9fd6d5" },
+					get_value = function()
+						return tostring(os.date("%y-%m-%d %H:%M"))
+					end,
+					key = "<leader>ts",
+					sort_order = 20,
+				},
+				-- Example: A @done tag that also sets the todo item state when it is added and removed
 				done = {
 					aliases = { "completed", "finished" },
 					style = { fg = "#96de7a" },
 					get_value = function()
-						return tostring(os.date("%m/%d/%y %H:%M"))
+						return tostring(os.date("%y-%m-%d %H:%M"))
 					end,
 					key = "<leader>td",
-					on_add = function(todo_item)
-						require("checkmate").set_todo_item(todo_item, "checked")
+					on_add = function(todo)
+						require("checkmate").set_todo_state(todo, "checked")
 					end,
-					on_remove = function(todo_item)
-						require("checkmate").set_todo_item(todo_item, "unchecked")
+					on_remove = function(todo)
+						require("checkmate").set_todo_state(todo, "unchecked")
 					end,
 					sort_order = 10,
 				},
