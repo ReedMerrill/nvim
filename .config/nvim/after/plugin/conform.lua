@@ -1,12 +1,12 @@
 require("conform").setup({
 	formatters_by_ft = {
+		csharp = { "csharpier" },
+		html = { "prettier" },
+		javascript = { "prettier" },
+		json = { "prettier" },
 		lua = { "stylua" },
 		python = { "ruff" },
 		r = { "air" },
-		javascript = { "prettier" },
-		html = { "prettier" },
-		markdown = { "prettier" },
-		json = { "prettier" },
 		sql = { "sqruff" },
 		quarto = { "injected" },
 	},

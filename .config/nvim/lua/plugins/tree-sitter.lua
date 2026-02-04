@@ -5,7 +5,6 @@ return {
 		-- A list of parser names, or "all" (the five listed parsers should always be installed)
 		ensure_installed = {
 			-- required parsers
-			"c",
 			"lua",
 			"vim",
 			"vimdoc",
@@ -14,6 +13,7 @@ return {
 			"markdown_inline",
 			"bashls",
 			"css",
+			"c_sharp",
 			"csv",
 			"html",
 			"javascript",
