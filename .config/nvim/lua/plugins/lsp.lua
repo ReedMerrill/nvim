@@ -7,86 +7,8 @@ return {
 			"mason-org/mason-lspconfig.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
-		config = function(_, opts)
-			-- blink.cmp
-			local lspconfig = require("lspconfig")
-			for server, config in pairs(opts.servers) do
-				-- passing config.capabilities to blink.cmp merges with the capabilities in your
-				-- `opts[server].capabilities, if you've defined it
-				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				lspconfig[server].setup(config)
-			end
-			--  This function gets run when an LSP attaches to a particular buffer.
-			--    That is to say, every time a new file is opened that is associated with
-			--    an LSP (for example, opening `main.rs` is associated with `rust_analyzer`) this
-			--    function will be executed to configure the current buffer
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-				callback = function(event)
-					-- In this case, we create a function that lets us more easily define mappings specific
-					-- for LSP related items. It sets the mode, buffer and description for us each time.
-					local map = function(keys, func, desc)
-						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-					end
-					-- LSP rename
-					map("grn", vim.lsp.buf.rename, "LSP rename")
-					-- Jump to the definition of the word under your cursor.
-					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-					-- Find references
-					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-					-- Jump to the type of the word under your cursor.
-					--  Useful when you're not sure what type a variable is and you want to see
-					--  the definition of its *type*, not where it was *defined*.
-					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-					-- Fuzzy find all the symbols in your current document.
-					--  Symbols are things like variables, functions, types, etc.
-					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-					-- Fuzzy find all the symbols in your current workspace
-					--  Similar to document symbols, except searches over your whole project.
-					map(
-						"<leader>ws",
-						require("telescope.builtin").lsp_dynamic_workspace_symbols,
-						"[W]orkspace [S]ymbols"
-					)
-					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-					-- WARN: This is not Goto Definition, this is Goto Declaration.
-					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-					-- The following two autocommands are used to highlight references of the
-					-- word under the cursor when the cursor rests there for a little while.
-					--    See `:help CursorHold` for information about when this is executed
-					-- When the cursor moves, the highlights will be cleared (the second autocommand).
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					-- functionality from the "VSCode Neovim" plugin... Somehow...
-					local vs_code = vim.g.vscode
-					if (not vs_code) and client and client.server_capabilities.documentHighlightProvider then
-						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-							buffer = event.buf,
-							callback = vim.lsp.buf.document_highlight,
-						})
-
-						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-							buffer = event.buf,
-							callback = vim.lsp.buf.clear_references,
-						})
-					end
-				end,
-			})
-
-			-- LSP servers and clients are able to communicate to each other what features they support.
-			--  By default, Neovim doesn't support everything that is in the LSP Specification.
-			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-			vim.lsp.config("*", {
-				capabilities = vim.lsp.protocol.make_client_capabilities(),
-			})
-
-			-- Ensure the servers and tools above are installed
-			require("mason").setup()
-
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
-			local servers = {
+    opts = {
+      servers = {
 				-- LSPs
 				bashls = {
 					on_attach = function()
@@ -138,6 +60,68 @@ return {
 					end,
 				},
 			}
+    },
+		config = function(_, opts)
+			-- blink.cmp
+			local lspconfig = require("lspconfig")
+			for server, config in pairs(opts.servers) do
+				-- passing config.capabilities to blink.cmp merges with the capabilities in your
+				-- `opts[server].capabilities, if you've defined it
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				lspconfig[server].setup(config)
+			end
+			--  This function gets run when an LSP attaches to a particular buffer.
+			--    That is to say, every time a new file is opened that is associated with
+			--    an LSP (for example, opening `main.rs` is associated with `rust_analyzer`) this
+			--    function will be executed to configure the current buffer
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+				callback = function(event)
+					-- In this case, we create a function that lets us more easily define mappings specific
+					-- for LSP related items. It sets the mode, buffer and description for us each time.
+					local map = function(keys, func, desc)
+						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+					end
+					-- LSP rename
+					map("grn", vim.lsp.buf.rename, "LSP rename")
+					-- Jump to the definition of the word under your cursor.
+					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					-- Find references
+					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					-- Jump to the type of the word under your cursor.
+					--  Useful when you're not sure what type a variable is and you want to see
+					--  the definition of its *type*, not where it was *defined*.
+					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+					-- Fuzzy find all the symbols in your current document.
+					--  Symbols are things like variables, functions, types, etc.
+					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+					-- Fuzzy find all the symbols in your current workspace
+					--  Similar to document symbols, except searches over your whole project.
+					map(
+						"<leader>ws",
+						require("telescope.builtin").lsp_dynamic_workspace_symbols,
+						"[W]orkspace [S]ymbols"
+					)
+					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					-- WARN: This is not Goto Definition, this is Goto Declaration.
+					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+        end
+      })
+
+			-- LSP servers and clients are able to communicate to each other what features they support.
+			--  By default, Neovim doesn't support everything that is in the LSP Specification.
+			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
+			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+			vim.lsp.config("*", {
+				capabilities = vim.lsp.protocol.make_client_capabilities(),
+			})
+
+			-- Ensure the servers and tools above are installed
+			require("mason").setup()
+
+			-- You can add other tools here that you want Mason to install
+			-- for you, so that they are available from within Neovim.
+			
 
 			require("mason-lspconfig").setup({
 				automatic_enable = true, -- make the default explicit

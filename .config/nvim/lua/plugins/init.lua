@@ -158,13 +158,6 @@ return {
 		end,
 	},
 	{
-		"stevearc/overseer.nvim",
-		opts = {
-			templates = { "builtin", "user.shiny_run", "user.r_tests_run" },
-		},
-		dependencies = { "yyk/find-git-root.nvim", "akinsho/toggleterm.nvim" },
-	},
-	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		config = function()
@@ -208,7 +201,6 @@ return {
 			end
 		end,
 	},
-	-- DAP UI
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
@@ -369,10 +361,4 @@ return {
 		},
 		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
 	},
-	-- {
-	-- 	"altermo/ultimate-autopair.nvim",
-	-- 	event = { "InsertEnter", "CmdlineEnter" },
-	-- 	branch = "v0.6", --recommended as each new version will have breaking changes
-	-- 	opts = {},
-	-- },
 }
