@@ -201,7 +201,6 @@ return {
 			end
 		end,
 	},
-	-- DAP UI
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
