@@ -7,69 +7,26 @@ return {
 			"mason-org/mason-lspconfig.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
-    opts = {
-      servers = {
-				-- LSPs
-				bashls = {
-					on_attach = function()
-						print("bashls attached")
-					end,
-				},
-				html = {
-					on_attach = function()
-						print("html LSP attached")
-					end,
-				},
-				pyright = {},
-				lua_ls = {
-					on_attach = function()
-						print("lua_ls attached")
-					end,
-					settings = {
-						Lua = {
-							runtime = { version = "LuaJIT" },
-							workspace = {
-								checkThirdParty = false,
-								-- Tells lua_ls where to find all the Lua files that you have loaded
-								-- for your neovim configuration.
-								library = {
-									"${3rd}/luv/library",
-									unpack(vim.api.nvim_get_runtime_file("", true)),
-								},
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							diagnostics = { disable = { "missing-fields" } },
-						},
-					},
-				},
-				r_language_server = {
-					on_attach = function()
-						print("r_language_server attached")
-					end,
-					filetypes = { "r", "rmd", "quarto" },
-					root_dir = function(bufnr, on_dir)
-						on_dir(vim.fs.root(bufnr, ".git") or vim.uv.os_homedir())
-					end,
-				},
-				rust_analyzer = {
-					on_attach = function()
-						print("rust_analyzer attached")
-					end,
-				},
-			}
-    },
-		config = function(_, opts)
-			-- blink.cmp
-			local lspconfig = require("lspconfig")
-			for server, config in pairs(opts.servers) do
-				-- passing config.capabilities to blink.cmp merges with the capabilities in your
-				-- `opts[server].capabilities, if you've defined it
-				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				lspconfig[server].setup(config)
+		config = function()
+			local servers = {}
+			local lsp_path = vim.fn.stdpath("config") .. "/lsp"
+			if vim.fn.isdirectory(lsp_path) == 1 then
+				for _, file in ipairs(vim.fn.readdir(lsp_path)) do
+					if file:match("%.lua$") then
+						local server_name = file:gsub("%.lua$", "")
+						local success, config = pcall(dofile, lsp_path .. "/" .. file)
+						if success then
+							servers[server_name] = config
+						else
+							vim.notify(
+								"Failed to load LSP config for " .. server_name .. ": " .. config,
+								vim.log.levels.ERROR
+							)
+						end
+					end
+				end
 			end
+
 			--  This function gets run when an LSP attaches to a particular buffer.
 			--    That is to say, every time a new file is opened that is associated with
 			--    an LSP (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -105,13 +62,14 @@ return {
 					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-        end
-      })
+				end,
+			})
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
 			--  By default, Neovim doesn't support everything that is in the LSP Specification.
 			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+			--  NOTE: blink.cmp handles this automatically in Neovim 0.11+ when using vim.lsp.config
 			vim.lsp.config("*", {
 				capabilities = vim.lsp.protocol.make_client_capabilities(),
 			})
@@ -119,23 +77,21 @@ return {
 			-- Ensure the servers and tools above are installed
 			require("mason").setup()
 
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
-			
-
 			require("mason-lspconfig").setup({
-				automatic_enable = true, -- make the default explicit
 				handlers = {
 					function(server_name)
-						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for tsserver)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						local config = servers[server_name] or {}
+						vim.lsp.config(server_name, config)
+						vim.lsp.enable(server_name)
 					end,
 				},
 			})
+
+			-- Manually enable servers that might not be managed by Mason but have configs in lsp/
+			for server_name, config in pairs(servers) do
+				vim.lsp.config(server_name, config)
+				vim.lsp.enable(server_name)
+			end
 		end,
 	},
 	-- WARN: This might not work below neovim 0.11
