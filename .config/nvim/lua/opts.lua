@@ -33,9 +33,6 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- get nice colors
-vim.opt.termguicolors = true
-
 -- limit terminal scrollback to avoid lag on old terminal sessions
 vim.opt.scrollback = 2000
 

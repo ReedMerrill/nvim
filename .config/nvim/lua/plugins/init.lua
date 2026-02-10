@@ -111,7 +111,7 @@ return {
 			show_modified = true,
 			show_navic = false,
 			theme = {
-				normal = { bg = "#1f1f28", fg = "#DCD7BA" },
+				normal = { bg = "#1d2021", fg = "#DCD7BA" },
 				basename = { bold = false },
 			},
 		},
@@ -218,12 +218,11 @@ return {
 		-- Use lualine for the status line
 		"nvim-lualine/lualine.nvim",
 		config = function()
-			local kanagawa_paper = require("lualine.themes.kanagawa-paper-ink")
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
 					globalstatus = true,
-					theme = kanagawa_paper,
+					theme = "gruvbox-material",
 					component_separators = "",
 					section_separators = "",
 				},
