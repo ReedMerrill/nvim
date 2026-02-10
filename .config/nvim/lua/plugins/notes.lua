@@ -157,15 +157,20 @@ return {
 	-- obsidian
 	{
 		"obsidian-nvim/obsidian.nvim",
-		ui = {
-			enable = false,
-		},
+
 		lazy = true,
 		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
 		opts = {
+			ui = {
+				enable = true,
+				reference_text = { hl_group = "ObsidianRefText" },
+				hl_groups = {
+					ObsidianRefText = { fg = "#7daea3", underline = true },
+				},
+			},
 			legacy_commands = false,
 			workspaces = {
 				{
