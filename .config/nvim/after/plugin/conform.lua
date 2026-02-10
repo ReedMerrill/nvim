@@ -5,6 +5,7 @@ require("conform").setup({
 		javascript = { "prettier" },
 		json = { "prettier" },
 		lua = { "stylua" },
+		markdown = { "prettier" },
 		python = { "ruff" },
 		r = { "air" },
 		sql = { "sqruff" },
