@@ -166,31 +166,11 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		opts = {
+			legacy_commands = false,
 			workspaces = {
 				{
-					name = "obsidian",
-					---Finds the workspace root by traversing upward from the current file's directory.
-					---@param flag string The name of the file or directory that marks a workspace root.
-					---@return string workspace_path The path to the workspace root, or the current working directory if not found.
-					path = function()
-						local uv = vim.loop
-						local flag = "notes.flag"
-						local file_path = vim.api.nvim_buf_get_name(0)
-						local dir = uv.fs_realpath(vim.fn.fnamemodify(file_path, ":p:h"))
-						local home = uv.fs_realpath(vim.fn.expand("~"))
-						while dir and dir:sub(1, #home) == home do
-							local flag_path = dir .. "/" .. flag
-							local stat = uv.fs_stat(flag_path)
-							if stat then
-								return dir
-							end
-							local parent = vim.fn.fnamemodify(dir, ":h")
-							if parent == dir then
-								break
-							end
-							dir = parent
-						end
-					end,
+					name = "obsidian-workspace",
+					path = "~/Can. Mun. Barometer Dropbox/Reed Merrill/3-resources/obsidian/CMB",
 				},
 			},
 			-- customize how note IDs are generated given an optional title.
@@ -208,7 +188,8 @@ return {
 			end,
 			completion = {
 				create_new = true,
-				nvim_cmp = true,
+				nvim_cmp = false,
+				blink = true,
 				min_chars = 2,
 			},
 			mappings = {
